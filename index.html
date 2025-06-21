@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matematika Dasar | Abu Hanif</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">Matematika Dasar</div>
+            <button class="hamburger" id="hamburger-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#materi">Materi</a></li>
+                <li><a href="#tentang">Tentang</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="beranda" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Selamat Datang di Matematika Dasar</h1>
+                <p>Belajar matematika dengan cara yang menyenangkan dan mudah dipahami</p>
+                <a href="#materi" class="cta-button">Mulai Belajar</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="deskripsi-matematika" class="deskripsi-matematika">
+        <div class="container">
+            <h2>Matematika Itu Seru dan Penting!</h2>
+            <p><strong>Matematika</strong> adalah ilmu yang mempelajari angka, pola, bentuk, dan hubungan di antara mereka. Tidak hanya soal hitung-hitungan, matematika juga membantu kita berpikir logis, memecahkan masalah, dan memahami dunia di sekitar kita. Dari menghitung uang jajan, membaca waktu, hingga teknologi canggih—semua butuh matematika!</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between;">
+                <div style="flex:1; min-width:220px;">
+                    <h3>Manfaat Matematika</h3>
+                    <ul>
+                        <li>Melatih logika dan pola pikir kritis</li>
+                        <li>Membantu mengambil keputusan sehari-hari</li>
+                        <li>Dasar dari sains, teknologi, ekonomi, dan banyak bidang lain</li>
+                    </ul>
+                </div>
+                <div style="flex:1; min-width:220px;">
+                    <h3>Sejarah Singkat</h3>
+                    <p>Matematika sudah digunakan sejak ribuan tahun lalu oleh bangsa Mesir, Babilonia, dan Yunani. Dari menghitung hasil panen hingga membangun piramida, matematika terus berkembang dan kini menjadi bagian penting kehidupan modern.</p>
+                </div>
+            </div>
+            <button class="fakta-btn" onclick="tampilkanFakta()">Fakta Menarik Matematika</button>
+            <div id="fakta-matematika" class="fakta-box" style="display:none;"></div>
+            <div class="kuis-box" id="kuis-matematika">
+                <h3 style="text-align:center;margin-bottom:1rem;">Quiz Matematika Singkat</h3>
+                <div class="kuis-question" id="kuis-question"></div>
+                <div class="kuis-options" id="kuis-options"></div>
+                <div class="kuis-feedback" id="kuis-feedback"></div>
+                <button id="kuis-next-btn" style="display:none;margin:1rem auto 0 auto;display:block;">Selanjutnya</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="materi" class="materi">
+        <div class="container">
+            <h2>Materi Pembelajaran</h2>
+            <div class="materi-grid">
+                <a href="aritmatika.html" style="text-decoration:none; color:inherit;">
+                    <div class="materi-card">
+                        <i class="fas fa-calculator"></i>
+                        <h3>Aritmetika</h3>
+                        <p>Dasar-dasar aritmetika: penjumlahan, pengurangan, perkalian, dan pembagian untuk pemula.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="tentang" class="tentang">
+        <div class="container">
+            <h2>Tentang Saya</h2>
+            <div class="profile">
+                <div class="profile-image">
+                    <img src="WhatsApp Image 2025-06-14 at 09.34.50_6577975d.jpg" alt="Abu Hanif">
+                </div>
+                <div class="profile-info">
+                    <h3>Abu Hanif | Afrizal Dwi Kurniawan</h3>
+                    <p>Seorang yang suka berbagi kebaikan dan masih terus belajar. Bersama-sama kita bisa memahami matematika dengan cara yang menyenangkan dan mudah dipahami.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontak" class="kontak">
+        <div class="container">
+            <h2>Hubungi Kami</h2>
+            <div class="kontak-info">
+                <div class="kontak-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>abuhanifafrizal@gmail.com</p>
+                </div>
+                <div class="kontak-item">
+                    <i class="fas fa-phone"></i>
+                    <p>+62 877 3601 4639</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Matematika Dasar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html> 

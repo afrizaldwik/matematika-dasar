@@ -1,0 +1,1008 @@
+/* ==========================================================================
+   Base Styles & Variables
+   ========================================================================== */
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1e40af;
+    --text-color: #1f2937;
+    --light-bg: #f3f4f6;
+    --white: #ffffff;
+    --border-color: #e5e7eb;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 24px rgba(37, 99, 235, 0.15);
+    --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --gradient-light: linear-gradient(120deg, #e0e7ff 60%, #fff 100%);
+    --transition-base: all 0.3s ease;
+    --border-radius-sm: 5px;
+    --border-radius-md: 10px;
+    --border-radius-lg: 14px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--white); /* Default background */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.2rem; }
+
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   Layout Components
+   ========================================================================== */
+/* Navbar */
+.navbar {
+    background-color: var(--white);
+    box-shadow: var(--shadow-sm);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem; /* Reduced gap */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 0.5rem 1rem; /* Adjusted padding */
+    border-radius: var(--border-radius-sm);
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+.nav-links a:hover,
+.nav-links a.active { /* Added .active class styling */
+    color: var(--white);
+    background: var(--primary-color);
+    text-decoration: none;
+    box-shadow: 0 1px 6px rgba(37,99,235,0.10);
+}
+.nav-links a:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Hero Section */
+.hero {
+    background: var(--gradient-primary);
+    color: var(--white);
+    padding: 8rem 0 4rem; /* Adjusted top padding if navbar is fixed */
+    text-align: center;
+    margin-top: 60px; /* Adjust based on navbar height */
+}
+.hero.subpage-hero { /* For non-index.html pages */
+    padding: 6rem 0 3rem;
+    margin-top: 60px;
+}
+
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 2.8rem; /* Adjusted size */
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.15rem; /* Adjusted size */
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* ==========================================================================
+   Components
+   ========================================================================== */
+/* Buttons */
+.cta-button {
+    display: inline-block;
+    padding: 0.9rem 1.8rem; /* Adjusted padding */
+    background-color: var(--white);
+    color: var(--primary-color);
+    text-decoration: none;
+    border-radius: var(--border-radius-md); /* Softer radius */
+    font-weight: bold;
+    transition: var(--transition-base), transform 0.2s;
+    box-shadow: var(--shadow-sm);
+}
+
+.cta-button:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: var(--shadow-md);
+    background-color: #f0f0f0;
+}
+
+/* Cards (General styling for materi cards) */
+.materi-card {
+    background: var(--white);
+    padding: 1.8rem; /* Adjusted padding */
+    border-radius: var(--border-radius-lg); /* Softer radius */
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%; /* For equal height cards in a grid */
+}
+
+.materi-card:hover {
+    transform: translateY(-6px); /* More lift */
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+.materi-card.no-hover-effect:hover { /* Utility class to disable hover if needed */
+    transform: none;
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-color);
+}
+
+
+.materi-card i {
+    font-size: 2.2rem; /* Adjusted size */
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    transition: color 0.3s;
+}
+.materi-card:hover i {
+    color: var(--secondary-color);
+}
+
+.materi-card h3 {
+    font-size: 1.3rem; /* Adjusted size */
+    margin-bottom: 0.7rem;
+    color: var(--text-color);
+}
+
+.materi-card p {
+    font-size: 1rem; /* Adjusted size */
+    color: #4b5563; /* Softer text color */
+    line-height: 1.5;
+}
+
+
+/* Grid Layouts */
+.materi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 2rem;
+}
+
+/* ==========================================================================
+   Section Specific Styling
+   ========================================================================== */
+section {
+    padding: 3rem 0; /* Consistent padding for sections */
+}
+section:nth-child(odd) {
+     /* background-color: var(--light-bg); */ /* Alternate background for sections */
+}
+
+/* Deskripsi Matematika Section */
+.deskripsi-matematika {
+    background: var(--gradient-light);
+    padding: 4rem 0 3rem 0;
+    margin-bottom: 0;
+    border-radius: 0 0 30px 30px;
+    box-shadow: 0 4px 16px rgba(37, 99, 235, 0.07);
+}
+.deskripsi-matematika .container {
+    max-width: 900px; /* Wider for text */
+    margin: 0 auto;
+    background: rgba(255,255,255,0.9); /* Slight transparency */
+    border-radius: var(--border-radius-lg);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-sm);
+}
+.deskripsi-matematika h2 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+.deskripsi-matematika h3 {
+    color: var(--secondary-color);
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+}
+.deskripsi-matematika p, .deskripsi-matematika ul {
+    font-size: 1.05rem; /* Adjusted size */
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+.deskripsi-matematika ul {
+    padding-left: 1.5rem;
+}
+.deskripsi-matematika li {
+    margin-bottom: 0.5rem;
+}
+
+/* Fakta Menarik & Kuis (index.html) */
+.fakta-box {
+    background: #eef2ff; /* Lighter background */
+    border-left: 4px solid var(--primary-color);
+    border-radius: var(--border-radius-md);
+    padding: 1.3rem 1.6rem;
+    margin: 2rem 0 1.5rem 0;
+    box-shadow: var(--shadow-sm);
+    font-size: 1.05rem;
+    color: var(--secondary-color);
+}
+.fakta-btn {
+    display: inline-block;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    padding: 0.8rem 1.6rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    transition: background-color 0.2s, transform 0.2s;
+}
+.fakta-btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.kuis-box {
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    margin: 2rem 0 1.5rem 0;
+    box-shadow: var(--shadow-md);
+}
+.kuis-question {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+.kuis-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+.kuis-option {
+    background: #eef2ff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    padding: 0.7rem 1.1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: left;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+    color: var(--text-color);
+}
+.kuis-option:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--white);
+}
+.kuis-option.correct {
+    background-color: #d1fae5; /* Green for correct */
+    border-color: #10b981;
+    color: #065f46;
+}
+.kuis-option.incorrect {
+    background-color: #fee2e2; /* Red for incorrect */
+    border-color: #f87171;
+    color: #991b1b;
+}
+.kuis-feedback {
+    font-weight: 600;
+    margin-top: 1rem; /* Increased margin */
+    padding: 0.8rem;
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+}
+.kuis-feedback[style*="color: rgb(34, 197, 94)"] { /* Correct feedback */
+    background-color: #dcfce7;
+    border-left: 4px solid #22c55e;
+}
+.kuis-feedback[style*="color: rgb(239, 68, 68)"] { /* Incorrect feedback */
+    background-color: #fee2e2;
+     border-left: 4px solid #ef4444;
+}
+
+
+#kuis-next-btn {
+    display: none; /* Hidden by default, shown by JS */
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 1.5rem auto 0 auto; /* Centered */
+    box-shadow: var(--shadow-sm);
+    transition: background-color 0.2s, transform 0.2s;
+}
+#kuis-next-btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+
+/* Tentang Section */
+.tentang {
+    padding: 4rem 0;
+}
+.tentang h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.profile {
+    display: flex;
+    flex-direction: column; /* Stack image and info on all screens for simplicity */
+    align-items: center;
+    gap: 1.5rem; /* Reduced gap */
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center; /* Center text for stacked layout */
+}
+.profile-image img {
+    width: 180px; /* Adjusted size */
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: var(--shadow-lg);
+}
+.profile-info h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.8rem;
+    font-size: 1.4rem;
+}
+.profile-info p {
+    font-size: 1.05rem;
+    color: #374151;
+}
+
+/* Kontak Section */
+.kontak {
+    padding: 4rem 0;
+    background-color: var(--light-bg);
+}
+.kontak h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.kontak-info {
+    display: flex;
+    flex-direction: column; /* Stack items */
+    align-items: center; /* Center items in column */
+    gap: 1.5rem; /* Gap between items */
+}
+.kontak-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.1rem;
+}
+.kontak-item i {
+    font-size: 1.3rem; /* Adjusted icon size */
+    color: var(--primary-color);
+    width: 25px; /* Fixed width for alignment */
+    text-align: center;
+}
+.kontak-item p {
+    margin-bottom: 0; /* Remove default p margin */
+}
+
+
+/* Footer */
+footer {
+    background-color: var(--text-color);
+    color: var(--white);
+    padding: 2.5rem 0;
+    text-align: center;
+}
+footer p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around; /* Adjusted for better spacing */
+    width: 30px; /* Adjusted size */
+    height: 24px; /* Adjusted size */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1100; /* Ensure it's above other elements */
+}
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 3px; /* Adjusted thickness */
+    background: var(--primary-color);
+    border-radius: 3px;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1); /* Smoother transition */
+}
+.hamburger.active span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg); /* Adjusted for new height */
+}
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px); /* Slide out animation */
+}
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg); /* Adjusted for new height */
+}
+
+
+/* Breadcrumb */
+.breadcrumb-container {
+    background: #f8fafc;
+    padding: 0.8rem 0; /* Adjusted padding */
+    border-bottom: 1px solid var(--border-color);
+    margin-top: 60px; /* Match hero margin-top */
+}
+.breadcrumb {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem; /* Adjusted gap */
+    font-size: 1rem; /* Adjusted size */
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap; /* Allow breadcrumbs to wrap */
+}
+.breadcrumb li {
+    color: var(--text-color); /* Current page color */
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+.breadcrumb li.home-bc {
+    margin-right: 0.3rem;
+}
+.breadcrumb li:not(:last-child)::after {
+    content: '\f105'; 
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #9ca3af; /* Softer separator color */
+    margin: 0 0.6rem; /* Adjusted margin */
+}
+.breadcrumb a {
+    color: var(--primary-color); /* Link color */
+    text-decoration: none;
+    padding: 0.2rem 0.4rem;
+    border-radius: var(--border-radius-sm);
+    transition: background-color 0.2s, color 0.2s;
+}
+.breadcrumb a:hover {
+    color: var(--white);
+    background: var(--primary-color);
+    text-decoration: none;
+}
+.breadcrumb .fa-house {
+    margin-right: 0.3rem;
+    font-size: 1em; /* Relative to breadcrumb font size */
+    color: var(--primary-color);
+}
+
+
+/* ==========================================================================
+   Calculator Components (Moved from aritmatika.html specific styles to general)
+   ========================================================================== */
+.kalkulator-wrapper {
+    max-width: 480px; /* Slightly wider */
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 2rem 1.5rem; /* Increased padding */
+    margin-bottom: 2rem; /* Spacing between calculators */
+    border: 1px solid var(--border-color);
+}
+
+.kalkulator-title {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 1.3rem; /* Adjusted size */
+    font-weight: 700;
+    margin-bottom: 1.5rem; /* Increased margin */
+}
+
+.kalkulator-row {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem; /* Adjusted gap */
+    margin-bottom: 1rem; /* Increased margin */
+    font-size: 1.1rem; /* Base font size for row */
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.kalkulator-row input[type="number"] {
+    width: 100px; /* Adjusted width */
+    border: 1.5px solid var(--border-color); /* Thicker border */
+    border-radius: var(--border-radius-sm);
+    padding: 0.6rem; /* Adjusted padding */
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    text-align: center;
+}
+.kalkulator-row input[type="number"]:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2); /* Focus ring */
+    outline: none;
+}
+
+.kalkulator-operator {
+    font-size: 1.4rem; /* Larger operator */
+    color: var(--primary-color);
+    font-weight: bold;
+    margin: 0 0.3rem;
+}
+
+.kalkulator-hasil {
+    min-width: 50px; /* Adjusted min-width */
+    font-size: 1.4rem; /* Larger result */
+    color: var(--secondary-color);
+    font-weight: bold;
+    background: var(--light-bg); /* Light background for result */
+    border-radius: var(--border-radius-sm);
+    padding: 0.5rem 0.8rem;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05); /* Inner shadow */
+    text-align: center;
+}
+
+.kalkulator-btn-row {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1.2rem; /* Added margin-top */
+    margin-bottom: 0.8rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.kalkulator-btn-row button {
+    min-width: 120px;
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius-sm); /* Consistent radius */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.7rem 1.4rem; /* Adjusted padding */
+    box-shadow: var(--shadow-sm);
+    transition: background-color 0.2s, transform 0.15s, box-shadow 0.2s;
+    outline: none;
+}
+.kalkulator-btn-row button:hover, .kalkulator-btn-row button:focus {
+    background: var(--secondary-color);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+.kalkulator-btn-row button:active {
+    transform: translateY(0px) scale(0.98);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.kalkulator-rumus,
+.kalkulator-kolom,
+.kalkulator-sifat,
+.kalkulator-history {
+    margin-top: 1.2rem; /* Consistent top margin */
+    font-size: 1rem;
+    background: #f9fafb; /* Consistent light background */
+    border-radius: var(--border-radius-md);
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+.kalkulator-rumus {
+    font-family: 'Fira Mono', 'Consolas', monospace;
+    color: #374151; /* Darker for readability */
+}
+.kalkulator-rumus b {
+    color: var(--primary-color);
+}
+
+.kalkulator-kolom {
+    font-family: 'Fira Mono', 'Consolas', monospace;
+    font-size: 1.15rem; /* Slightly larger for clarity */
+    line-height: 1.6;
+    overflow-x: auto; /* Allow horizontal scroll if needed */
+}
+.kolom-carry {
+    color: #f59e0b; /* Amber for carry */
+    font-size: 0.9em;
+    letter-spacing: 0.15em; /* Adjusted spacing */
+    min-height: 1.1em;
+    text-align: right;
+    padding-right: 0.5em; /* Align with numbers */
+}
+.kolom-angka {
+    letter-spacing: 0.15em;
+    text-align: right;
+    padding-right: 0.5em;
+}
+.kolom-operator {
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-right: 0.3em; /* Space after operator */
+}
+.kolom-garis {
+    border-bottom: 2px solid var(--primary-color); /* Thicker line */
+    width: 100%;
+    margin: 0.2em 0 0.3em 0;
+}
+.kolom-hasil {
+    color: #10b981; /* Green for result */
+    font-weight: bold;
+    font-size: 1.1em; /* Relative to .kalkulator-kolom */
+    letter-spacing: 0.15em;
+    text-align: right;
+    padding-right: 0.5em;
+}
+.kolom-langkah {
+    font-size: 0.9rem; /* Smaller for explanation */
+    color: #4b5563;
+    margin-top: 0.8em;
+    background: #eef2ff; /* Lighter blue for steps */
+    border-radius: var(--border-radius-sm);
+    padding: 0.8em 1em;
+    text-align: left;
+    line-height: 1.5;
+    white-space: pre-wrap; /* Allow wrapping */
+}
+.kolom-langkah b {
+    color: var(--secondary-color);
+}
+.kolom-partial { /* For multiplication partial results */
+    color: #6b7280;
+    font-size: 1em;
+    letter-spacing: 0.15em;
+    text-align: right;
+    padding-right: 0.5em;
+    white-space: pre;
+}
+
+
+.kalkulator-sifat strong,
+.kalkulator-history strong {
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+.kalkulator-sifat ul,
+.kalkulator-history ul {
+    list-style-position: inside;
+    padding-left: 0.5rem;
+}
+.kalkulator-sifat li,
+.kalkulator-history li {
+    margin-bottom: 0.3rem;
+    color: #374151;
+}
+.kalkulator-history li {
+    font-family: 'Fira Mono', 'Consolas', monospace;
+}
+
+/* Specific styling for perkalian array visual */
+.perkalian-array-visual {
+    display: grid;
+    justify-content: start; /* Align grid to the start */
+    margin: 1em auto; /* Center the block if container is wider */
+    gap: 5px; /* Spacing between dots */
+    padding: 0.5em;
+    background-color: #f0f8ff; /* Light background for the visual area */
+    border-radius: var(--border-radius-sm);
+    max-width: fit-content; /* Ensure the grid container doesn't stretch unnecessarily */
+}
+.perkalian-array-visual .dot {
+    width: 16px; /* Dot size */
+    height: 16px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem; /* Reduced padding for smaller screens */
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        position: fixed;
+        top: 0; 
+        right: -100%; /* Start off-screen */
+        width: 70vw;
+        max-width: 280px; /* Max width for menu */
+        height: 100vh;
+        background: var(--white);
+        box-shadow: -3px 0 15px rgba(0,0,0,0.1); /* Shadow on the left */
+        padding-top: calc(60px + 1rem); /* Below navbar + some padding */
+        gap: 0.5rem; /* Reduced gap for links */
+        align-items: flex-start;
+        transition: right 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
+        z-index: 1050; /* Above navbar content, below hamburger */
+    }
+    .nav-links.open {
+        display: flex; /* Show when open */
+        right: 0;
+    }
+     .nav-links li {
+        width: 100%;
+    }
+    .nav-links a {
+        display: block; /* Make links full width */
+        padding: 0.8rem 1.5rem; /* Adjust padding */
+        border-radius: 0; /* No radius for full-width items */
+        width: 100%;
+        color: var(--primary-color); /* Emphasize links */
+    }
+    .nav-links a:hover, .nav-links a.active {
+        background-color: #e0e7ff; /* Lighter hover for mobile */
+        color: var(--primary-color);
+        box-shadow: none;
+    }
+
+    body.menu-open {
+        overflow: hidden; /* Prevent scrolling of body when menu is open */
+    }
+
+
+    .hero {
+        padding: 6rem 0 3rem; /* Adjusted padding */
+        margin-top: 50px; /* Adjust based on navbar height */
+    }
+    .hero.subpage-hero {
+        padding: 5rem 0 2rem;
+        margin-top: 50px;
+    }
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    .hero p {
+        font-size: 1.05rem;
+    }
+    
+    .breadcrumb-container {
+        margin-top: 50px; /* Match hero margin-top */
+    }
+    .breadcrumb {
+        font-size: 0.9rem;
+    }
+
+    .profile {
+        gap: 1.5rem;
+    }
+    .profile-image img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .kontak-info {
+        gap: 1.2rem;
+    }
+    .kontak-item {
+        font-size: 1rem;
+    }
+
+    .kalkulator-wrapper {
+        padding: 1.5rem 1rem;
+    }
+    .kalkulator-row input[type="number"] {
+        width: 80px;
+    }
+    .kalkulator-btn-row button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.95rem;
+    }
+    .kalkulator-kolom {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.7rem; }
+    h3 { font-size: 1.3rem; }
+
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+     .hero p {
+        font-size: 1rem;
+    }
+
+    .materi-grid {
+        grid-template-columns: 1fr; /* Single column for very small screens */
+    }
+     .materi-card {
+        padding: 1.5rem 1.2rem;
+    }
+    .materi-card i {
+        font-size: 2rem;
+    }
+    .materi-card h3 {
+        font-size: 1.15rem;
+    }
+    .materi-card p {
+        font-size: 0.95rem;
+    }
+
+
+    .deskripsi-matematika .container {
+        padding: 2rem 1.2rem;
+    }
+    .deskripsi-matematika h2 {
+        font-size: 1.6rem;
+    }
+    .deskripsi-matematika p, .deskripsi-matematika ul {
+        font-size: 0.95rem;
+    }
+
+
+    .kuis-box {
+        padding: 1.5rem 1rem;
+    }
+    .kuis-option {
+        padding: 0.6rem 0.9rem;
+        font-size: 0.95rem;
+    }
+    #kuis-next-btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    .kalkulator-wrapper {
+        padding: 1rem 0.5rem;
+    }
+    .kalkulator-row input[type="number"] {
+        width: 70px; /* Further reduce for small screens */
+        padding: 0.5rem;
+    }
+     .kalkulator-operator, .kalkulator-hasil {
+        font-size: 1.2rem;
+    }
+    .kalkulator-btn-row {
+        gap: 0.5rem;
+    }
+    .kalkulator-btn-row button {
+        min-width: 100px;
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+    }
+    .kalkulator-kolom {
+        font-size: 0.95rem; /* Smaller for explanations */
+    }
+    .kolom-langkah {
+        font-size: 0.85rem;
+    }
+}
+
+
+/* ==========================================================================
+   Animations (Kept simple for now)
+   ========================================================================== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Apply to elements that should fade in or slide up */
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+.slide-in-up {
+    animation: slideInUp 0.5s ease-out forwards;
+}
+
+
+/* Accessibility */
+[aria-hidden="true"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+*:focus-visible {
+    outline: 3px solid var(--secondary-color);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 5px rgba(30, 64, 175, 0.3); /* Match secondary color with transparency */
+}
+.navbar:focus-within, .nav-links:focus-within {
+    /* Optional: additional styling when a child element within navbar gets focus */
+}

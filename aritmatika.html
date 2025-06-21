@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aritmetika | Matematika Dasar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .penjelasan-aritmetika {
+            background-color: #f9fafb; /* Slightly different background for distinction */
+            padding: 2.5rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .penjelasan-aritmetika .container {
+            max-width: 900px; /* Wider container for text content */
+        }
+        .penjelasan-aritmetika h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .penjelasan-aritmetika h3 {
+            color: var(--secondary-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--light-bg);
+            padding-bottom: 0.5rem;
+        }
+        .penjelasan-aritmetika p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        .sifat-table-container {
+            overflow-x: auto; /* Allows table to scroll horizontally on small screens */
+            margin-top: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+        .sifat-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1rem;
+        }
+        .sifat-table th, .sifat-table td {
+            padding: 0.8rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .sifat-table th {
+            background-color: var(--light-bg);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        .sifat-table tr:last-child td {
+            border-bottom: none;
+        }
+        .sifat-table tr:hover {
+            background-color: #e0e7ff;
+        }
+        .sifat-table td:nth-child(1) { /* Kolom Rumus */
+            font-family: 'Fira Mono', 'Consolas', monospace;
+            color: var(--secondary-color);
+        }
+         /* Responsive table for very small screens */
+        @media (max-width: 600px) {
+            .penjelasan-aritmetika h2 {
+                font-size: 1.8rem;
+            }
+             .penjelasan-aritmetika h3 {
+                font-size: 1.3rem;
+            }
+            .penjelasan-aritmetika p {
+                font-size: 1rem;
+            }
+            .sifat-table th, .sifat-table td {
+                padding: 0.6rem 0.8rem;
+            }
+        }
+
+        /* Adjust grid for fewer items */
+        #aritmatika-link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+            gap: 2rem;
+            max-width: 700px; /* Max width for 2 cards */
+            margin: 0 auto; /* Center the grid */
+        }
+
+         @media (max-width: 680px) {
+             #aritmatika-link-grid {
+                grid-template-columns: 1fr; /* Single column on smaller screens */
+             }
+         }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">Matematika Dasar</div>
+            <button class="hamburger" id="hamburger-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html#beranda">Beranda</a></li>
+                <li><a href="index.html#materi">Materi</a></li>
+                <li><a href="index.html#tentang">Tentang</a></li>
+                <li><a href="index.html#kontak">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="hero" style="padding:7rem 0 2rem 0;">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Aritmetika Dasar</h1>
+                <p>Pelajari konsep dasar aritmetika: penjumlahan, pengurangan, perkalian, dan pembagian dengan cara yang mudah dan menyenangkan.</p>
+            </div>
+        </div>
+    </section>
+    <nav class="breadcrumb-container">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li class="home-bc"><a href="index.html"><i class="fa-solid fa-house"></i>Beranda</a></li>
+                <li>Aritmetika</li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="penjelasan-aritmetika">
+        <div class="container">
+            <h2>Memahami Aritmetika Dasar</h2>
+            <p><strong>Aritmetika</strong> adalah cabang matematika yang paling dasar dan paling tua, berfokus pada studi tentang bilangan dan operasi-operasi dasar seperti <strong>penjumlahan (+), pengurangan (-), perkalian (×), dan pembagian (÷)</strong>. Menguasai aritmetika adalah langkah pertama dan fundamental untuk memahami konsep matematika yang lebih kompleks. Dari menghitung uang kembalian hingga merencanakan anggaran, aritmetika digunakan dalam kehidupan sehari-hari.</p>
+
+            <h3>Sifat-sifat Utama dalam Aritmetika</h3>
+            <p>Operasi aritmetika memiliki beberapa sifat penting yang membantu kita memahami bagaimana angka-angka berinteraksi dan menyederhanakan perhitungan. Sifat-sifat ini adalah aturan dasar yang berlaku umum dan menjadi landasan untuk aljabar dan topik matematika lainnya.</p>
+            <div class="sifat-table-container">
+                <table class="sifat-table">
+                    <thead>
+                        <tr>
+                            <th>Sifat (Rumus)</th>
+                            <th>Nama</th>
+                            <th>Maksud</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>a + b = b + a</td>
+                            <td>Komutatif (Penjumlahan)</td>
+                            <td>Urutan penjumlahan tidak mengubah hasil.</td>
+                        </tr>
+                        <tr>
+                            <td>a × b = b × a</td>
+                            <td>Komutatif (Perkalian)</td>
+                            <td>Urutan perkalian tidak mengubah hasil.</td>
+                        </tr>
+                        <tr>
+                            <td>(a + b) + c = a + (b + c)</td>
+                            <td>Asosiatif (Penjumlahan)</td>
+                            <td>Pengelompokan dalam penjumlahan tidak mengubah hasil.</td>
+                        </tr>
+                        <tr>
+                            <td>(a × b) × c = a × (b × c)</td>
+                            <td>Asosiatif (Perkalian)</td>
+                            <td>Pengelompokan dalam perkalian tidak mengubah hasil.</td>
+                        </tr>
+                        <tr>
+                            <td>a + 0 = a</td>
+                            <td>Identitas (Penjumlahan)</td>
+                            <td>Menambahkan bilangan dengan nol menghasilkan bilangan itu sendiri.</td>
+                        </tr>
+                        <tr>
+                            <td>a × 1 = a</td>
+                            <td>Identitas (Perkalian)</td>
+                            <td>Mengalikan bilangan dengan satu menghasilkan bilangan itu sendiri.</td>
+                        </tr>
+                         <tr>
+                            <td>a × 0 = 0</td>
+                            <td>Sifat Nol (Perkalian)</td>
+                            <td>Mengalikan bilangan dengan nol menghasilkan nol.</td>
+                        </tr>
+                        <tr>
+                            <td>a × (b + c) = (a × b) + (a × c)</td>
+                            <td>Distributif</td>
+                            <td>Perkalian didistribusikan ke setiap anggota dalam penjumlahan.</td>
+                        </tr>
+                        <tr>
+                            <td>Jika a dan b adalah anggota suatu himpunan, dan (a operasi b) juga anggota himpunan tersebut.</td>
+                            <td>Tertutup</td>
+                            <td>Hasil operasi tetap berada dalam himpunan bilangan yang sama (misalnya, penjumlahan dua bilangan bulat hasilnya selalu bilangan bulat).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Menuju Aritmetika Lebih Lanjut</h3>
+            <p>Setelah memahami operasi dasar dan sifat-sifatnya, Anda siap untuk menjelajahi konsep aritmetika yang lebih lanjut. Ini termasuk pemahaman tentang urutan operasi (sering diingat dengan akronim seperti PEMDAS/BODMAS), bekerja dengan bilangan negatif, pecahan, desimal, rasio, dan persentase. Sifat-sifat yang telah dipelajari akan sangat berguna saat Anda mulai belajar aljabar, di mana huruf digunakan untuk mewakili angka.</p>
+        </div>
+    </section>
+
+    <section class="materi" style="padding-top:2rem;">
+        <div class="container">
+            <h2>Pilihan Materi Aritmetika</h2>
+            <div class="materi-grid" id="aritmatika-link-grid">
+                <a href="kalkulator_aritmetika_dasar.html" style="text-decoration:none; color:inherit;">
+                    <div class="materi-card">
+                        <i class="fas fa-calculator"></i>
+                        <h3>Kalkulator Aritmetika Dasar</h3>
+                        <p>Akses kalkulator interaktif untuk penjumlahan, pengurangan, perkalian, dan pembagian.</p>
+                    </div>
+                </a>
+                <a href="aritmetika_dasar.html" style="text-decoration:none; color:inherit;">
+                    <div class="materi-card" id="quiz-sifat-aritmetika-card">
+                        <i class="fas fa-brain"></i>
+                        <h3>Quiz Sifat Aritmetika</h3>
+                        <p>Uji pemahamanmu tentang sifat-sifat dasar aritmetika (komutatif, asosiatif, distributif) dengan kuis interaktif.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Matematika Dasar. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

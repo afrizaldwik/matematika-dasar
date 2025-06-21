@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Aritmetika Dasar | Matematika Dasar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .kalkulator-section {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .kalkulator-section:last-child {
+            border-bottom: none;
+        }
+        .kalkulator-section h2 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">Matematika Dasar</div>
+            <button class="hamburger" id="hamburger-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html#beranda">Beranda</a></li>
+                <li><a href="aritmatika.html">Aritmetika</a></li>
+                <li><a href="index.html#materi">Materi Lain</a></li>
+                <li><a href="index.html#tentang">Tentang</a></li>
+                <li><a href="index.html#kontak">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="hero" style="padding:7rem 0 2rem 0; background: var(--gradient-light); ">
+        <div class="container">
+            <div class="hero-content" style="color: var(--text-color);">
+                <h1>Kalkulator Aritmetika Dasar</h1>
+                <p style="color: var(--text-color);">Gunakan alat interaktif kami untuk berlatih operasi dasar matematika.</p>
+            </div>
+        </div>
+    </section>
+    <nav class="breadcrumb-container">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li class="home-bc"><a href="index.html"><i class="fa-solid fa-house"></i>Beranda</a></li>
+                <li><a href="aritmatika.html">Aritmetika</a></li>
+                <li>Kalkulator Aritmetika Dasar</li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="kalkulator-section" id="kalkulator-penjumlahan">
+        <div class="container">
+            <h2>Kalkulator Penjumlahan</h2>
+            <div class="kalkulator-wrapper">
+                <h4 class="kalkulator-title">Penjumlahan</h4>
+                <div class="penjumlahan-kalkulator">
+                    <div class="kalkulator-row">
+                        <input type="number" id="angka1" placeholder="Angka pertama" aria-label="Angka pertama untuk penjumlahan">
+                        <span class="kalkulator-operator" aria-hidden="true">+</span>
+                        <input type="number" id="angka2" placeholder="Angka kedua" aria-label="Angka kedua untuk penjumlahan">
+                        <span class="kalkulator-operator" aria-hidden="true">=</span>
+                        <span id="hasil-penjumlahan" class="kalkulator-hasil" aria-live="polite">?</span>
+                    </div>
+                    <div class="kalkulator-btn-row">
+                        <button id="hitung-btn">Hitung</button>
+                        <button id="acak-btn" title="Soal acak">Coba Soal Acak</button>
+                        <button id="reset-btn" title="Reset">Reset</button>
+                    </div>
+                </div>
+                <div class="kalkulator-rumus" id="kalkulator-rumus" aria-live="polite"></div>
+                <div class="kalkulator-kolom" id="kalkulator-kolom" style="margin:0.7rem 0;" aria-live="polite"></div>
+                <div class="kalkulator-sifat" id="kalkulator-sifat">
+                    <strong>Sifat Penjumlahan:</strong>
+                    <ul>
+                        <li><b>Komutatif:</b> a + b = b + a</li>
+                        <li><b>Asosiatif:</b> (a + b) + c = a + (b + c)</li>
+                        <li><b>Identitas:</b> a + 0 = a</li>
+                    </ul>
+                </div>
+                <div class="kalkulator-history" id="kalkulator-history">
+                    <strong>Riwayat Penjumlahan:</strong>
+                    <ul id="history-list" aria-live="polite"></ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="kalkulator-section" id="kalkulator-pengurangan">
+        <div class="container">
+            <h2>Kalkulator Pengurangan</h2>
+            <div class="kalkulator-wrapper">
+                <h4 class="kalkulator-title">Pengurangan</h4>
+                <div class="pengurangan-kalkulator">
+                    <div class="kalkulator-row">
+                        <input type="number" id="angka1-kurang" placeholder="Angka pertama" aria-label="Angka pertama untuk pengurangan">
+                        <span class="kalkulator-operator" aria-hidden="true">-</span>
+                        <input type="number" id="angka2-kurang" placeholder="Angka kedua" aria-label="Angka kedua untuk pengurangan">
+                        <span class="kalkulator-operator" aria-hidden="true">=</span>
+                        <span id="hasil-pengurangan" class="kalkulator-hasil" aria-live="polite">?</span>
+                    </div>
+                    <div class="kalkulator-btn-row">
+                        <button id="hitung-btn-kurang">Hitung</button>
+                        <button id="acak-btn-kurang" title="Soal acak">Coba Soal Acak</button>
+                        <button id="reset-btn-kurang" title="Reset">Reset</button>
+                    </div>
+                </div>
+                <div class="kalkulator-rumus" id="kalkulator-rumus-kurang" aria-live="polite"></div>
+                <div class="kalkulator-kolom" id="kalkulator-kolom-kurang" style="margin:0.7rem 0;" aria-live="polite"></div>
+                <div class="kalkulator-sifat" id="kalkulator-sifat-kurang">
+                    <strong>Sifat Pengurangan:</strong>
+                    <ul>
+                        <li><b>Identitas:</b> a - 0 = a</li>
+                        <li><b>Pengurangan Diri Sendiri:</b> a - a = 0</li>
+                        <li><b>Bukan Komutatif:</b> a - b ≠ b - a (umumnya)</li>
+                    </ul>
+                </div>
+                <div class="kalkulator-history" id="kalkulator-history-kurang">
+                    <strong>Riwayat Pengurangan:</strong>
+                    <ul id="history-list-kurang" aria-live="polite"></ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="kalkulator-section" id="kalkulator-perkalian">
+        <div class="container">
+            <h2>Kalkulator Perkalian</h2>
+            <div class="kalkulator-wrapper">
+                <h4 class="kalkulator-title">Perkalian</h4>
+                <div class="perkalian-kalkulator">
+                    <div class="kalkulator-row">
+                        <input type="number" id="angka1-kali" placeholder="Angka pertama" aria-label="Angka pertama untuk perkalian">
+                        <span class="kalkulator-operator" aria-hidden="true">×</span>
+                        <input type="number" id="angka2-kali" placeholder="Angka kedua" aria-label="Angka kedua untuk perkalian">
+                        <span class="kalkulator-operator" aria-hidden="true">=</span>
+                        <span id="hasil-perkalian" class="kalkulator-hasil" aria-live="polite">?</span>
+                    </div>
+                    <div class="kalkulator-btn-row">
+                        <button id="hitung-btn-kali">Hitung</button>
+                        <button id="acak-btn-kali" title="Soal acak">Coba Soal Acak</button>
+                        <button id="reset-btn-kali" title="Reset">Reset</button>
+                    </div>
+                </div>
+                <div class="kalkulator-rumus" id="kalkulator-rumus-kali" aria-live="polite"></div>
+                <div class="kalkulator-kolom" id="kalkulator-kolom-kali" style="margin:0.7rem 0;" aria-live="polite"></div>
+                <div class="kalkulator-sifat" id="kalkulator-sifat-kali">
+                    <strong>Sifat Perkalian:</strong>
+                    <ul>
+                        <li><b>Komutatif:</b> a × b = b × a</li>
+                        <li><b>Asosiatif:</b> (a × b) × c = a × (b × c)</li>
+                        <li><b>Distributif:</b> a × (b + c) = (a × b) + (a × c)</li>
+                        <li><b>Identitas:</b> a × 1 = a</li>
+                        <li><b>Perkalian dengan Nol:</b> a × 0 = 0</li>
+                    </ul>
+                </div>
+                <div class="kalkulator-history" id="kalkulator-history-kali">
+                    <strong>Riwayat Perkalian:</strong>
+                    <ul id="history-list-kali" aria-live="polite"></ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="kalkulator-section" id="kalkulator-pembagian">
+        <div class="container">
+            <h2>Kalkulator Pembagian</h2>
+            <div class="kalkulator-wrapper">
+                <h4 class="kalkulator-title">Pembagian</h4>
+                <div class="pembagian-kalkulator">
+                    <div class="kalkulator-row">
+                        <input type="number" id="angka1-bagi" placeholder="Angka pertama" aria-label="Angka pertama untuk pembagian">
+                        <span class="kalkulator-operator" aria-hidden="true">÷</span>
+                        <input type="number" id="angka2-bagi" placeholder="Angka kedua" aria-label="Angka kedua untuk pembagian">
+                        <span class="kalkulator-operator" aria-hidden="true">=</span>
+                        <span id="hasil-pembagian" class="kalkulator-hasil" aria-live="polite">?</span>
+                    </div>
+                    <div class="kalkulator-btn-row">
+                        <button id="hitung-btn-bagi">Hitung</button>
+                        <button id="acak-btn-bagi" title="Soal acak">Coba Soal Acak</button>
+                        <button id="reset-btn-bagi" title="Reset">Reset</button>
+                    </div>
+                </div>
+                <div class="kalkulator-rumus" id="kalkulator-rumus-bagi" aria-live="polite"></div>
+                <div class="kalkulator-kolom" id="kalkulator-kolom-bagi" style="margin:0.7rem 0;" aria-live="polite"></div>
+                <div class="kalkulator-sifat" id="kalkulator-sifat-bagi">
+                    <strong>Sifat Pembagian:</strong>
+                    <ul>
+                        <li><b>Identitas:</b> a ÷ 1 = a</li>
+                        <li><b>Pembagian dengan Diri Sendiri:</b> a ÷ a = 1 (a ≠ 0)</li>
+                        <li><b>Pembagian dengan Nol:</b> a ÷ 0 tidak terdefinisi</li>
+                        <li><b>Distributif (kanan):</b> (a + b) ÷ c = (a ÷ c) + (b ÷ c)</li>
+                    </ul>
+                </div>
+                <div class="kalkulator-history" id="kalkulator-history-bagi">
+                    <strong>Riwayat Pembagian:</strong>
+                    <ul id="history-list-bagi" aria-live="polite"></ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Matematika Dasar. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        // Hamburger Menu (Copied from script.js for standalone functionality)
+        const navbar = document.querySelector('.navbar');
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const navLinks = document.getElementById('nav-links');
+        const body = document.body;
+
+        function toggleMenu() {
+            hamburgerBtn.classList.toggle('active');
+            navLinks.classList.toggle('open');
+            body.classList.toggle('menu-open');
+        }
+
+        if (hamburgerBtn) {
+            hamburgerBtn.addEventListener('click', toggleMenu);
+        }
+
+        document.addEventListener('click', (e) => {
+            if (navLinks && navLinks.classList.contains('open') &&
+                !navLinks.contains(e.target) &&
+                hamburgerBtn && !hamburgerBtn.contains(e.target)) {
+                toggleMenu();
+            }
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks && navLinks.classList.contains('open')) {
+                toggleMenu();
+            }
+        });
+
+
+        // Penjumlahan
+        (function() {
+            const angka1 = document.getElementById('angka1');
+            const angka2 = document.getElementById('angka2');
+            const hasilDiv = document.getElementById('hasil-penjumlahan');
+            const rumusDiv = document.getElementById('kalkulator-rumus');
+            const kolomDiv = document.getElementById('kalkulator-kolom');
+            const historyList = document.getElementById('history-list');
+            const hitungBtn = document.getElementById('hitung-btn');
+            const acakBtn = document.getElementById('acak-btn');
+            const resetBtn = document.getElementById('reset-btn');
+
+            if (!angka1 || !angka2 || !hasilDiv || !hitungBtn) return; // Guard against null elements
+
+            let historyArr = [];
+            function tampilkanRumus(a, b) {
+                if (rumusDiv) rumusDiv.innerHTML = `<b>Rumus:</b> <span style='color:#2563eb;'>${a} + ${b} = ?</span>`;
+            }
+            function tampilkanKolom(a, b, hasil) {
+                if (!kolomDiv) return;
+                let aStr = a.toString().padStart(Math.max(a.toString().length, b.toString().length), ' ');
+                let bStr = b.toString().padStart(Math.max(a.toString().length, b.toString().length), ' ');
+                let hStr = hasil.toString().padStart(Math.max(aStr.length, bStr.length, hasil.toString().length), ' ');
+                let carryArr = [];
+                let langkahArr = [];
+                let carry = 0;
+                let digitsA = aStr.split('').reverse();
+                let digitsB = bStr.split('').reverse();
+                let digitsH = hStr.split('').reverse();
+                
+                for (let i = 0; i < digitsH.length; i++) {
+                    let dA = isNaN(parseInt(digitsA[i])) ? 0 : parseInt(digitsA[i]);
+                    let dB = isNaN(parseInt(digitsB[i])) ? 0 : parseInt(digitsB[i]);
+                    let sum = dA + dB + carry;
+                    let simpan = sum >= 10 ? 1 : 0;
+                    carryArr[i+1] = simpan ? '1' : '';
+                    let kolomKe = i+1;
+                    let labelKolom = '';
+                    if (kolomKe === 1) labelKolom = 'Satuan';
+                    else if (kolomKe === 2) labelKolom = 'Puluhan';
+                    else if (kolomKe === 3) labelKolom = 'Ratusan';
+                    else labelKolom = `Kolom ke-${kolomKe}`;
+                    
+                    let step = `<b>${labelKolom}:</b> `;
+                    if (carry) {
+                        step += `${dA} + ${dB} + ${carry} = ${sum}`;
+                    } else {
+                        step += `${dA} + ${dB} = ${sum}`;
+                    }
+                    
+                    if (simpan) {
+                        step += ` (tulis ${sum%10}, simpan 1)`;
+                    } else {
+                        step += ` (tulis ${sum})`;
+                    }
+                    
+                    langkahArr.push(step);
+                    carry = simpan;
+                }
+                let carryStr = carryArr.reverse().join(' ').replace(/ /g,'&nbsp;');
+                kolomDiv.innerHTML = `
+                    <div class='kolom-carry'>${carryStr}</div>
+                    <div class='kolom-angka'><span class='kolom-operator'>&nbsp;</span>${aStr.replace(/ /g,'&nbsp;')}</div>
+                    <div class='kolom-angka'><span class='kolom-operator'>+</span>${bStr.replace(/ /g,'&nbsp;')}</div>
+                    <div class='kolom-garis'></div>
+                    <div class='kolom-hasil'>${hStr.replace(/ /g,'&nbsp;')}</div>
+                    <div class='kolom-langkah'>${langkahArr.join('<br>')}</div>
+                `;
+            }
+            function updateHistory(a, b, hasil) {
+                 if (!historyList) return;
+                historyArr.unshift(`${a} + ${b} = ${hasil}`);
+                if (historyArr.length > 5) historyArr = historyArr.slice(0, 5);
+                historyList.innerHTML = historyArr.map(h => `<li>${h}</li>`).join('');
+            }
+            function resetPenjumlahan() {
+                if (angka1) angka1.value = '';
+                if (angka2) angka2.value = '';
+                if (hasilDiv) {
+                    hasilDiv.innerText = '?';
+                    hasilDiv.style.color = '#64748b';
+                }
+                if (rumusDiv) rumusDiv.innerHTML = '';
+                if (kolomDiv) kolomDiv.innerHTML = '';
+            }
+            function acakPenjumlahan() {
+                const a = Math.floor(Math.random() * 900) + 10;
+                const b = Math.floor(Math.random() * 900) + 10;
+                if (angka1) angka1.value = a;
+                if (angka2) angka2.value = b;
+                 if (hasilDiv) {
+                    hasilDiv.innerText = '?';
+                    hasilDiv.style.color = '#64748b';
+                }
+                if (rumusDiv) rumusDiv.innerHTML = '';
+                if (kolomDiv) kolomDiv.innerHTML = '';
+            }
+            
+            hitungBtn.addEventListener('click', function() {
+                const a = parseInt(angka1.value);
+                const b = parseInt(angka2.value);
+                if (!isNaN(a) && !isNaN(b)) {
+                    hasilDiv.innerText = `${a + b}`;
+                    hasilDiv.style.color = '#2563eb';
+                    tampilkanRumus(a, b);
+                    tampilkanKolom(a, b, a + b);
+                    updateHistory(a, b, a + b);
+                } else {
+                    resetPenjumlahan();
+                }
+            });
+            if (acakBtn) acakBtn.addEventListener('click', acakPenjumlahan);
+            if (resetBtn) resetBtn.addEventListener('click', resetPenjumlahan);
+        })();
+
+        // Pengurangan
+        (function() {
+            const angka1k = document.getElementById('angka1-kurang');
+            const angka2k = document.getElementById('angka2-kurang');
+            const hasilDivK = document.getElementById('hasil-pengurangan');
+            const rumusDivK = document.getElementById('kalkulator-rumus-kurang');
+            const kolomDivK = document.getElementById('kalkulator-kolom-kurang');
+            const historyListK = document.getElementById('history-list-kurang');
+            const hitungBtnK = document.getElementById('hitung-btn-kurang');
+            const acakBtnK = document.getElementById('acak-btn-kurang');
+            const resetBtnK = document.getElementById('reset-btn-kurang');
+
+            if(!angka1k || !angka2k || !hasilDivK || !hitungBtnK) return;
+
+            let historyArrK = [];
+            function tampilkanRumusKurang(a, b) {
+                if(rumusDivK) rumusDivK.innerHTML = `<b>Rumus:</b> <span style='color:#2563eb;'>${a} - ${b} = ?</span>`;
+            }
+            function tampilkanKolomKurang(a, b, hasil) {
+                if (!kolomDivK) return;
+                let aStr = a.toString().padStart(Math.max(a.toString().length, b.toString().length), ' ');
+                let bStr = b.toString().padStart(Math.max(a.toString().length, b.toString().length), ' ');
+                let hStr = hasil.toString().padStart(Math.max(aStr.length, bStr.length, hasil.toString().length), ' ');
+                let langkahArr = [];
+                let digitsA = aStr.split('').reverse().map(d => isNaN(parseInt(d)) ? 0 : parseInt(d));
+                let digitsB = bStr.split('').reverse().map(d => isNaN(parseInt(d)) ? 0 : parseInt(d));
+                let digitsH = hStr.split('').reverse();
+                let tempA = [...digitsA];
+                let dipinjam = Array(tempA.length).fill(0);
+                // Proses peminjaman
+                for (let i = 0; i < digitsH.length; i++) {
+                    if (tempA[i] < (digitsB[i] || 0)) {
+                        let k = i + 1;
+                        while (k < tempA.length) {
+                            if (tempA[k] > 0) {
+                                tempA[k]--;
+                                tempA[i] += 10;
+                                dipinjam[k]++;
+                                break;
+                            } else {
+                                tempA[k] = 9;
+                                dipinjam[k]++;
+                                k++;
+                            }
+                        }
+                    }
+                }
+                // Proses pengurangan dan tampilkan langkah
+                for (let i = 0; i < digitsH.length; i++) {
+                    let dA = tempA[i];
+                    let dB = digitsB[i] || 0;
+                    let originalDA = digitsA[i];
+                    let afterPinjam = originalDA - dipinjam[i];
+                    let selisih = dA - dB;
+                    let labelKolom = '';
+                    let kolomKe = i+1;
+                    if (kolomKe === 1) labelKolom = 'Satuan';
+                    else if (kolomKe === 2) labelKolom = 'Puluhan';
+                    else if (kolomKe === 3) labelKolom = 'Ratusan';
+                    else labelKolom = `Kolom ke-${kolomKe}`;
+                    let step = '';
+                    if (dipinjam[i] > 0 && dA === originalDA) {
+                        // Kolom ini dipinjam oleh kolom lain, tapi tidak meminjam ke kanan
+                        step = `<b>${labelKolom}:</b> ${originalDA} (setelah dipinjam jadi ${afterPinjam}) - ${dB} = ${afterPinjam} - ${dB} = ${selisih}`;
+                    } else if (dA > originalDA) {
+                        // Kolom ini meminjam dari kolom lain
+                        step = `<b>${labelKolom}:</b> ${afterPinjam} (pinjam 1 dari kolom ke-${i+2}, ${afterPinjam} jadi ${dA}) - ${dB} = ${dA} - ${dB} = ${selisih}`;
+                    } else {
+                        step = `<b>${labelKolom}:</b> ${afterPinjam} - ${dB} = ${selisih}`;
+                    }
+                    langkahArr.push(step);
+                }
+                kolomDivK.innerHTML = `
+                    <div class='kolom-angka'><span class='kolom-operator'>&nbsp;</span>${aStr.replace(/ /g,'&nbsp;')}</div>
+                    <div class='kolom-angka'><span class='kolom-operator'>-</span>${bStr.replace(/ /g,'&nbsp;')}</div>
+                    <div class='kolom-garis'></div>
+                    <div class='kolom-hasil'>${hStr.replace(/ /g,'&nbsp;')}</div>
+                    <div class='kolom-langkah'>${langkahArr.join('<br>')}</div>
+                `;
+            }
+            function updateHistoryKurang(a, b, hasil) {
+                if (!historyListK) return;
+                historyArrK.unshift(`${a} - ${b} = ${hasil}`);
+                if (historyArrK.length > 5) historyArrK = historyArrK.slice(0, 5);
+                historyListK.innerHTML = historyArrK.map(h => `<li>${h}</li>`).join('');
+            }
+            function resetPengurangan() {
+                if(angka1k) angka1k.value = '';
+                if(angka2k) angka2k.value = '';
+                if(hasilDivK) {
+                    hasilDivK.innerText = '?';
+                    hasilDivK.style.color = '#64748b';
+                }
+                if(rumusDivK) rumusDivK.innerHTML = '';
+                if(kolomDivK) kolomDivK.innerHTML = '';
+            }
+            function acakPengurangan() {
+                const a = Math.floor(Math.random() * 900) + 100;
+                const b = Math.floor(Math.random() * a); 
+                if(angka1k) angka1k.value = a;
+                if(angka2k) angka2k.value = b;
+                 if(hasilDivK) {
+                    hasilDivK.innerText = '?';
+                    hasilDivK.style.color = '#64748b';
+                }
+                if(rumusDivK) rumusDivK.innerHTML = '';
+                if(kolomDivK) kolomDivK.innerHTML = '';
+            }
+            
+            hitungBtnK.addEventListener('click', function() {
+                const a = parseInt(angka1k.value);
+                const b = parseInt(angka2k.value);
+                if (!isNaN(a) && !isNaN(b)) {
+                    if (a < b) {
+                         hasilDivK.innerText = "Error";
+                         hasilDivK.style.color = '#ef4444';
+                         if(rumusDivK) rumusDivK.innerHTML = "<span style='color:#ef4444;'>Angka pertama harus lebih besar dari angka kedua untuk pengurangan cara ini.</span>";
+                         if(kolomDivK) kolomDivK.innerHTML = "";
+                         return;
+                    }
+                    hasilDivK.innerText = `${a - b}`;
+                    hasilDivK.style.color = '#2563eb';
+                    tampilkanRumusKurang(a, b);
+                    tampilkanKolomKurang(a, b, a - b);
+                    updateHistoryKurang(a, b, a - b);
+                } else {
+                    resetPengurangan();
+                }
+            });
+            if(acakBtnK) acakBtnK.addEventListener('click', acakPengurangan);
+            if(resetBtnK) resetBtnK.addEventListener('click', resetPengurangan);
+        })();
+
+        // Perkalian
+        (function() {
+            const angka1k = document.getElementById('angka1-kali');
+            const angka2k = document.getElementById('angka2-kali');
+            const hasilDivK = document.getElementById('hasil-perkalian');
+            const rumusDivK = document.getElementById('kalkulator-rumus-kali');
+            const kolomDivK = document.getElementById('kalkulator-kolom-kali');
+            const historyListK = document.getElementById('history-list-kali');
+            const hitungBtnK = document.getElementById('hitung-btn-kali');
+            const acakBtnK = document.getElementById('acak-btn-kali');
+            const resetBtnK = document.getElementById('reset-btn-kali');
+
+            if(!angka1k || !angka2k || !hasilDivK || !hitungBtnK) return;
+            
+            let historyArrK = [];
+
+            function tampilkanRumusKali(a, b) {
+                if(rumusDivK) rumusDivK.innerHTML = `<b>Rumus:</b> <span style='color:#2563eb;'>${a} × ${b} = ?</span>`;
+            }
+
+            function tampilkanKolomKali(a, b, hasil) {
+                if (!kolomDivK) return;
+                let aStr = a.toString();
+                let bStr = b.toString();
+                let hStr = hasil.toString();
+                let langkahArr = [];
+                let digitsA = aStr.split('').reverse().map(Number);
+                let digitsB = bStr.split('').reverse().map(Number);
+                let maxLen = Math.max(aStr.length, bStr.length + 1, hStr.length);
+                let partials = [];
+                let partialRows = [];
+                let penjumlahanLangkah = [];
+
+                // Proses perkalian satu per satu
+                for (let i = 0; i < digitsB.length; i++) {
+                    let carry = 0;
+                    let row = [];
+                    let langkah = [];
+                    for (let j = 0; j < digitsA.length; j++) {
+                        let prod = digitsA[j] * digitsB[i] + carry;
+                        let simpan = Math.floor(prod / 10);
+                        let tulis = prod % 10;
+                        row[j] = tulis;
+                        // Jika ini digit terakhir, tidak perlu simpan
+                        if (j === digitsA.length - 1) {
+                            langkah.push(`${digitsA[j]} × ${digitsB[i]} + simpan ${carry} = ${prod} (tulis ${prod})`);
+                            if (prod >= 10) row[j+1] = simpan; // tulis sisa di depan
+                        } else {
+                            langkah.push(`${digitsA[j]} × ${digitsB[i]} + simpan ${carry} = ${prod} (tulis ${tulis}, simpan ${simpan})`);
+                        }
+                        carry = simpan;
+                    }
+                    // Gabungkan hasil parsial dan tambahkan nol di depan sesuai posisi
+                    let rowStr = row.reverse().join('') + '0'.repeat(i);
+                    partials.push(parseInt(rowStr));
+                    partialRows.push(rowStr.padStart(maxLen, ' '));
+                    langkahArr.push(`<b>Langkah ${i+1} (${digitsB[i]} × ${aStr}):</b><br>${langkah.join('<br>')}`);
+                }
+
+                // Penjumlahan hasil parsial
+                let penjumlahanVertikal = '';
+                for (let i = 0; i < partialRows.length; i++) {
+                    penjumlahanVertikal += `<div style='text-align:right;'>${i > 0 ? '+' : '&nbsp;'}${partialRows[i]}</div>`;
+                }
+                penjumlahanVertikal += `<div style='text-align:right;border-top:2px solid #333;margin:2px 0;'><b>${hStr.padStart(maxLen, ' ')}</b></div>`;
+
+                // Langkah penjumlahan
+                if (partialRows.length > 1) {
+                    penjumlahanLangkah.push(`<b>Langkah Penjumlahan:</b>`);
+                    for (let i = 0; i < partialRows.length; i++) {
+                        penjumlahanLangkah.push(`${i === 0 ? '' : '+'}${parseInt(partialRows[i])}`);
+                    }
+                    penjumlahanLangkah.push(`<b>= ${hasil}</b>`);
+                }
+
+                kolomDivK.innerHTML = `
+                    <div class='kolom-angka' style='text-align:right;'><span class='kolom-operator'>&nbsp;</span>${aStr.padStart(maxLen,' ')}</div>
+                    <div class='kolom-angka' style='text-align:right;'><span class='kolom-operator'>×</span>${bStr.padStart(maxLen-1,' ')}</div>
+                    <div class='kolom-garis' style='width:${maxLen}em;'></div>
+                    ${penjumlahanVertikal}
+                    <div class='kolom-langkah'>${langkahArr.join('<br><br>')}<br><br>${penjumlahanLangkah.join('<br>')}</div>
+                `;
+            }
+
+            function updateHistoryKali(a, b, hasil) {
+                if(!historyListK) return;
+                historyArrK.unshift(`${a} × ${b} = ${hasil}`);
+                if (historyArrK.length > 5) historyArrK = historyArrK.slice(0, 5);
+                historyListK.innerHTML = historyArrK.map(h => `<li>${h}</li>`).join('');
+            }
+
+            function resetPerkalian() {
+                if(angka1k) angka1k.value = '';
+                if(angka2k) angka2k.value = '';
+                if(hasilDivK) {
+                    hasilDivK.innerText = '?';
+                    hasilDivK.style.color = '#64748b';
+                }
+                if(rumusDivK) rumusDivK.innerHTML = '';
+                if(kolomDivK) kolomDivK.innerHTML = '';
+            }
+
+            function acakPerkalian() {
+                const a = Math.floor(Math.random() * 90) + 1; // 1-90 for 2-digit max
+                const b = Math.floor(Math.random() * 90) + 1; // 1-90
+                if(angka1k) angka1k.value = a;
+                if(angka2k) angka2k.value = b;
+                 if(hasilDivK) {
+                    hasilDivK.innerText = '?';
+                    hasilDivK.style.color = '#64748b';
+                }
+                if(rumusDivK) rumusDivK.innerHTML = '';
+                if(kolomDivK) kolomDivK.innerHTML = '';
+            }
+            
+            hitungBtnK.addEventListener('click', function() {
+                const a = parseInt(angka1k.value);
+                const b = parseInt(angka2k.value);
+                if (!isNaN(a) && !isNaN(b)) {
+                    const hasil = a * b;
+                    hasilDivK.innerText = `${hasil}`;
+                    hasilDivK.style.color = '#2563eb';
+                    tampilkanRumusKali(a, b);
+                    tampilkanKolomKali(a, b, hasil);
+                    updateHistoryKali(a, b, hasil);
+                } else {
+                    resetPerkalian();
+                }
+            });
+            if(acakBtnK) acakBtnK.addEventListener('click', acakPerkalian);
+            if(resetBtnK) resetBtnK.addEventListener('click', resetPerkalian);
+        })();
+
+        // Pembagian
+        (function() {
+            const angka1b = document.getElementById('angka1-bagi');
+            const angka2b = document.getElementById('angka2-bagi');
+            const hasilDivB = document.getElementById('hasil-pembagian');
+            const rumusDivB = document.getElementById('kalkulator-rumus-bagi');
+            const kolomDivB = document.getElementById('kalkulator-kolom-bagi');
+            const historyListB = document.getElementById('history-list-bagi');
+            const hitungBtnB = document.getElementById('hitung-btn-bagi');
+            const acakBtnB = document.getElementById('acak-btn-bagi');
+            const resetBtnB = document.getElementById('reset-btn-bagi');
+
+            if(!angka1b || !angka2b || !hasilDivB || !hitungBtnB) return;
+
+            let historyArrB = [];
+
+            function tampilkanRumus(a, b) {
+                if(rumusDivB) rumusDivB.innerHTML = `<b>Rumus:</b> <span style='color:#2563eb;'>${a} ÷ ${b} = ?</span>`;
+            }
+
+            function tampilkanKolom(a, b) {
+                if (!kolomDivB) return;
+                if (b === 0) {
+                    kolomDivB.innerHTML = "<div class='kolom-langkah' style='color:red;'>Pembagian dengan nol tidak terdefinisi.</div>";
+                    return;
+                }
+
+                const hasilBulat = Math.floor(a / b);
+                const sisa = a % b;
+                const dividenStr = a.toString();
+                const divisorStr = b.toString();
+                const quotientStr = hasilBulat.toString();
+                
+                let langkahHTML = `<div style="font-family: 'Fira Mono', 'Consolas', monospace; font-size:1.1em; line-height:1.7; margin-bottom:1em; white-space:pre; text-align:right;">`;
+                let penjelasanLangkah = `<div class='kolom-langkah'><b>Langkah Pembagian (Porogapit):</b><br>`;
+                
+                let sisaSaatIni = 0;
+                let bagianDividen = "";
+                let indentasi = 0;
+                const spasiPerIndent = "  "; // Dua spasi untuk setiap tingkat indentasi
+
+                // Header porogapit
+                langkahHTML += `${' '.repeat(quotientStr.length)}${divisorStr} ) ${dividenStr}\n`;
+                langkahHTML += `${' '.repeat(quotientStr.length + divisorStr.length + 3)}` + '─'.repeat(dividenStr.length) + ` (Hasil: ${quotientStr})\n`;
+                
+                let sisaLangkah = 0;
+                let angkaDividen = dividenStr.split('');
+                let bagianDiambil = '';
+                let langkahKe = 1;
+
+                for (let i = 0; i < angkaDividen.length; i++) {
+                    bagianDiambil += angkaDividen[i];
+                    let numBagianDiambil = parseInt(bagianDiambil);
+                    
+                    if (numBagianDiambil >= b || i === angkaDividen.length -1 && parseInt(bagianDiambil) > 0 && langkahKe === 1 && hasilBulat === 0) {
+                         // Hanya proses jika numBagianDiambil cukup besar ATAU ini adalah digit terakhir dan belum ada langkah berarti
+                        let qSementara = Math.floor(numBagianDiambil / b);
+                        let hasilKali = qSementara * b;
+                        sisaLangkah = numBagianDiambil - hasilKali;
+
+                        penjelasanLangkah += `<b>Langkah ${langkahKe}:</b> Ambil '${bagianDiambil}'. `;
+                        penjelasanLangkah += `${bagianDiambil} ÷ ${b} = ${qSementara}. Tulis ${qSementara} di atas.<br>`;
+                        penjelasanLangkah += `  ${qSementara} × ${b} = ${hasilKali}. Tulis ${hasilKali} di bawah '${bagianDiambil}'.<br>`;
+                        
+                        langkahHTML += `${' '.repeat(quotientStr.length + divisorStr.length + 3 + i - hasilKali.toString().length + (bagianDiambil.length - hasilKali.toString().length > 0 ? bagianDiambil.length - hasilKali.toString().length : 0) )}${hasilKali}\n`;
+                        langkahHTML += `${' '.repeat(quotientStr.length + divisorStr.length + 3 + i - hasilKali.toString().length + (bagianDiambil.length - hasilKali.toString().length > 0 ? bagianDiambil.length - hasilKali.toString().length : 0) )}` + '─'.repeat(hasilKali.toString().length) + `\n`;
+
+                        penjelasanLangkah += `  Kurangkan: ${numBagianDiambil} - ${hasilKali} = ${sisaLangkah}.<br>`;
+                        
+                        bagianDiambil = sisaLangkah.toString();
+                        if (sisaLangkah === 0 && i < angkaDividen.length -1) { // Jika sisa 0 dan masih ada digit, bawa sisa jadi string kosong untuk langkah berikutnya
+                           bagianDiambil = '';
+                        }
+                         // Tampilkan sisa, kecuali jika ini langkah terakhir dan sisa adalah 0 dari pembagian habis
+                        if (!(i === angkaDividen.length -1 && sisaLangkah === 0 && sisa === 0) || sisaLangkah !==0 ) {
+                             langkahHTML += `${' '.repeat(quotientStr.length + divisorStr.length + 3 + i - sisaLangkah.toString().length + 1 )}${sisaLangkah}\n`;
+                        }
+                        
+                        langkahKe++;
+                    } else if (hasilBulat === 0 && langkahKe === 1) { // Kasus dimana angka pertama tidak cukup
+                        // Tidak perlu penjelasan khusus, akan ditangani oleh loop berikutnya
+                    }
+                }
+                
+                penjelasanLangkah += `<b>Hasil Akhir:</b> ${a} ÷ ${b} = ${hasilBulat}`;
+                if (sisa > 0) {
+                    penjelasanLangkah += `, Sisa ${sisa}`;
+                }
+                penjelasanLangkah += `</div>`;
+                langkahHTML += `</div>`;
+                
+                kolomDivB.innerHTML = langkahHTML + penjelasanLangkah;
+            }
+
+            function updateHistory(a, b, hasilBulat, sisa) {
+                if(!historyListB) return;
+                let operasi = `${a} ÷ ${b} = ${hasilBulat}`;
+                if (sisa > 0) {
+                    operasi += ` sisa ${sisa}`;
+                }
+                historyArrB.unshift(operasi);
+                if (historyArrB.length > 5) historyArrB.pop();
+                historyListB.innerHTML = historyArrB.map(item => `<li>${item}</li>`).join('');
+            }
+
+            function hitungPembagian() {
+                const a = parseInt(angka1b.value);
+                const b = parseInt(angka2b.value);
+                
+                if (isNaN(a) || isNaN(b)) {
+                    if(hasilDivB) hasilDivB.textContent = '?';
+                    if(rumusDivB) rumusDivB.innerHTML = '';
+                    if(kolomDivB) kolomDivB.innerHTML = '';
+                    return;
+                }
+                
+                if (b === 0) {
+                    if(hasilDivB) hasilDivB.textContent = 'Error';
+                    if(rumusDivB) rumusDivB.innerHTML = '<span style="color: #ef4444;">Pembagian dengan 0 tidak terdefinisi</span>';
+                    if(kolomDivB) kolomDivB.innerHTML = '';
+                    return;
+                }
+                
+                const hasilBulat = Math.floor(a / b);
+                const sisa = a % b;
+
+                if(hasilDivB) {
+                    hasilDivB.textContent = `${hasilBulat}${sisa > 0 ? ' sisa ' + sisa : ''}`;
+                    hasilDivB.style.color = '#2563eb';
+                }
+                tampilkanRumus(a, b);
+                tampilkanKolom(a, b);
+                updateHistory(a, b, hasilBulat, sisa);
+            }
+
+            function acakAngka() {
+                const min = 1;
+                const maxDivisor = 20; // Max divisor
+                const maxResult = 50; // Max result of whole division part
+
+                let b = Math.floor(Math.random() * (maxDivisor - min + 1)) + min;
+                let k = Math.floor(Math.random() * (maxResult - min + 1)) + min;
+                let a = b * k + Math.floor(Math.random() * b); // Ensure 'a' can be divided by 'b' with potential remainder
+
+                if (a === 0 && b === 0) { // Avoid 0/0
+                    a = Math.floor(Math.random() * 99) +1;
+                    b = Math.floor(Math.random() * 19) +1;
+                } else if (b === 0) { // Avoid division by zero
+                     b = Math.floor(Math.random() * 19) +1;
+                }
+
+
+                if(angka1b) angka1b.value = a;
+                if(angka2b) angka2b.value = b;
+                if(hasilDivB) {
+                    hasilDivB.textContent = '?';
+                    hasilDivB.style.color = '#64748b';
+                }
+                if(rumusDivB) rumusDivB.innerHTML = '';
+                if(kolomDivB) kolomDivB.innerHTML = '';
+            }
+
+            function resetKalkulator() {
+                if(angka1b) angka1b.value = '';
+                if(angka2b) angka2b.value = '';
+                if(hasilDivB) {
+                    hasilDivB.textContent = '?';
+                    hasilDivB.style.color = '#64748b';
+                }
+                if(rumusDivB) rumusDivB.innerHTML = '';
+                if(kolomDivB) kolomDivB.innerHTML = '';
+            }
+            
+            hitungBtnB.addEventListener('click', hitungPembagian);
+            if (acakBtnB) acakBtnB.addEventListener('click', acakAngka);
+            if (resetBtnB) resetBtnB.addEventListener('click', resetKalkulator);
+
+        })();
+    </script>
+</body>
+</html>

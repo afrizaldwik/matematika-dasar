@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Aritmetika Lanjutan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .quiz-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .question {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .question.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question h3 {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+
+        .difficulty {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .difficulty.mudah { background: #2ecc71; color: white; }
+        .difficulty.sedang { background: #f39c12; color: white; }
+        .difficulty.sulit { background: #e74c3c; color: white; }
+
+        .options {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .options li {
+            margin: 10px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .options li:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .options li.selected {
+            background: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .options li.correct {
+            background: #2ecc71;
+            color: white;
+            border-color: #27ae60;
+        }
+
+        .options li.incorrect {
+            background: #e74c3c;
+            color: white;
+            border-color: #c0392b;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .progress {
+            width: 100%;
+            height: 8px;
+            background: #ecf0f1;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .score-display {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .results {
+            display: none;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .results.show {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .results h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            font-size: 2em;
+            font-weight: bold;
+            color: white;
+            background: conic-gradient(#2ecc71 0deg, #2ecc71 0deg, #ecf0f1 0deg);
+        }
+
+        .explanation {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+            text-align: left;
+        }
+
+        .explanation h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .detailed-results {
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        .question-result {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #bdc3c7;
+        }
+
+        .question-result.correct {
+            border-left-color: #2ecc71;
+        }
+
+        .question-result.incorrect {
+            border-left-color: #e74c3c;
+        }
+
+        .question-result h5 {
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .question-result .user-answer {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .question-result .correct-answer {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+
+        .restart-btn {
+            background: #8e44ad;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .restart-btn:hover {
+            background: #7d3c98;
+            transform: translateY(-2px);
+        }
+
+        .timer {
+            text-align: center;
+            font-size: 1.1em;
+            color: #e74c3c;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 Quiz Sifat-Sifat Aritmetika</h1>
+            <p>Uji pemahamanmu dengan 50 soal Komutatif, Asosiatif, dan lainnya!</p>
+        </div>
+
+        <div class="quiz-container">
+            <div class="progress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <div class="score-display">
+                <span>Soal: <span id="currentQuestion">1</span> dari <span id="totalQuestions"></span></span>
+                <span style="margin-left: 20px;">Skor: <span id="currentScore">0</span></span>
+            </div>
+
+            <div class="timer" id="timer">⏰ Waktu: 00:00</div>
+
+            <div id="questionsContainer">
+                <!-- Questions will be generated here -->
+            </div>
+
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>Sebelumnya</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Selanjutnya</button>
+                <button class="btn btn-primary" id="finishBtn" onclick="finishQuiz()" style="display: none;">Selesai</button>
+            </div>
+        </div>
+
+        <div class="results" id="results">
+            <!-- Results will be shown here -->
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            // LEVEL MUDAH (1-20)
+            {
+                question: "Persamaan `5 + 9 = 9 + 5` adalah contoh dari sifat...",
+                options: ["Asosiatif", "Komutatif", "Distributif", "Identitas"],
+                correct: 1,
+                difficulty: "mudah",
+                explanation: "<strong>Rumus:</strong> a + b = b + a. Sifat komutatif menyatakan bahwa urutan angka dalam operasi penjumlahan atau perkalian tidak mengubah hasilnya."
+            },
+            {
+                question: "Bilangan berapakah yang merupakan elemen identitas untuk penjumlahan?",
+                options: ["1", "0", "-1", "10"],
+                correct: 1,
+                difficulty: "mudah",
+                explanation: "<strong>Rumus:</strong> a + 0 = a. Elemen identitas penjumlahan adalah 0, karena jika bilangan apapun ditambahkan dengan 0, hasilnya adalah bilangan itu sendiri."
+            },
+            {
+                question: "Persamaan `(2 + 3) + 4 = 2 + (3 + 4)` menunjukkan sifat...",
+                options: ["Komutatif", "Distributif", "Asosiatif", "Tertutup"],
+                correct: 2,
+                difficulty: "mudah",
+                explanation: "<strong>Rumus:</strong> (a + b) + c = a + (b + c). Sifat asosiatif menyatakan bahwa cara pengelompokan angka dalam operasi penjumlahan atau perkalian tidak mengubah hasilnya."
+            },
+            {
+                question: "Sifat apakah yang ditunjukkan oleh persamaan `7 × (10 + 2) = (7 × 10) + (7 × 2)`?",
+                options: ["Asosiatif", "Komutatif", "Distributif", "Identitas"],
+                correct: 2,
+                difficulty: "mudah",
+                explanation: "<strong>Rumus:</strong> a × (b + c) = (a × b) + (a × c). Sifat distributif menghubungkan operasi perkalian dan penjumlahan."
+            },
+            {
+                question: "Angka berapakah yang merupakan elemen identitas untuk perkalian?",
+                options: ["0", "1", "2", "-1"],
+                correct: 1,
+                difficulty: "mudah",
+                explanation: "<strong>Rumus:</strong> a × 1 = a. Elemen identitas perkalian adalah 1, karena bilangan apapun yang dikalikan dengan 1 hasilnya adalah bilangan itu sendiri."
+            },
+            {
+                question: "Menurut sifat komutatif, `8 × 12` sama dengan...",
+                options: ["8 + 12", "12 - 8", "12 × 8", "8 ÷ 12"],
+                correct: 2,
+                difficulty: "mudah",
+                explanation: "<strong>Rumus:</strong> a × b = b × a. Sifat komutatif pada perkalian berarti urutan tidak mengubah hasil."
+            },
+            {
+                question: "Penjumlahan dua bilangan asli akan selalu menghasilkan bilangan asli. Ini disebut sifat...",
+                options: ["Identitas", "Komutatif", "Tertutup", "Asosiatif"],
+                correct: 2,
+                difficulty: "mudah",
+                explanation: "<strong>Konsep:</strong> Jika a dan b anggota himpunan S, maka a + b juga anggota S. Sifat tertutup berarti hasil operasi tetap berada dalam himpunan yang sama."
+            },
+            {
+                question: "Lengkapi persamaan berikut agar menunjukkan sifat distributif: `5 × (a + b) = ...`",
+                options: ["5 + a + b", "(5 × a) + b", "(5 × a) + (5 × b)", "5 × a × b"],
+                correct: 2,
+                difficulty: "mudah",
+                explanation: "<strong>Rumus:</strong> a × (b + c) = ab + ac. Angka di luar kurung dikalikan dengan setiap angka di dalam kurung."
+            },
+            {
+                question: "Manakah dari berikut ini yang BUKAN contoh sifat komutatif?",
+                options: ["x + y = y + x", "3 × 4 = 4 × 3", "7 - 2 = 2 - 7", "m × n = n × m"],
+                correct: 2,
+                difficulty: "mudah",
+                explanation: "<strong>Konsep:</strong> a - b ≠ b - a. Pengurangan tidak bersifat komutatif karena 7 - 2 = 5, sedangkan 2 - 7 = -5."
+            },
+            {
+                question: "Nilai dari `123 + 0` adalah 123. Ini adalah contoh sifat...",
+                options: ["Identitas", "Komutatif", "Asosiatif", "Nol"],
+                correct: 0,
+                difficulty: "mudah",
+                explanation: "<strong>Rumus:</strong> a + 0 = a. Menambahkan suatu bilangan dengan elemen identitas (0) tidak mengubah nilai bilangan tersebut."
+            },
+            {
+                question: "`(4 × 5) × 6` akan memiliki hasil yang sama dengan `4 × (5 × 6)` karena sifat...",
+                options: ["Distributif", "Komutatif", "Asosiatif", "Tertutup"],
+                correct: 2,
+                difficulty: "mudah",
+                explanation: "<strong>Rumus:</strong> (a × b) × c = a × (b × c). Sifat asosiatif berlaku untuk perkalian, di mana pengelompokan tidak memengaruhi hasil."
+            },
+            {
+                question: "Sifat distributif menggabungkan dua operasi, yaitu...",
+                options: ["Penjumlahan dan Pengurangan", "Perkalian dan Pembagian", "Perkalian dan Penjumlahan", "Semua salah"],
+                correct: 2,
+                difficulty: "mudah",
+                explanation: "<strong>Rumus:</strong> a × (b + c) = ab + ac. Sifat ini mendistribusikan perkalian ke dalam penjumlahan (atau pengurangan)."
+            },
+            {
+                question: "Jika `x + y = z` dan x, y adalah bilangan bulat, maka z juga pasti bilangan bulat. Ini adalah sifat...",
+                options: ["Identitas", "Tertutup", "Asosiatif", "Komutatif"],
+                correct: 1,
+                difficulty: "mudah",
+                explanation: "<strong>Konsep:</strong> Himpunan bilangan bulat tertutup terhadap operasi penjumlahan."
+            },
+            {
+                question: "Persamaan `(a + b) = (b + a)` adalah bentuk umum dari sifat...",
+                options: ["Asosiatif", "Komutatif", "Distributif", "Identitas"],
+                correct: 1,
+                difficulty: "mudah",
+                explanation: "<strong>Rumus:</strong> a + b = b + a. Ini adalah definisi formal dari sifat komutatif untuk penjumlahan."
+            },
+            {
+                question: "Angka 1 disebut 'elemen identitas perkalian' karena...",
+                options: ["Mudah dikalikan", "Setiap angka dikali 1 hasilnya 1", "Setiap angka dikali 1 hasilnya angka itu sendiri", "Angka pertama dalam berhitung"],
+                correct: 2,
+                difficulty: "mudah",
+                explanation: "<strong>Rumus:</strong> a × 1 = a. Definisi dari elemen identitas adalah elemen yang tidak mengubah nilai elemen lain saat dioperasikan."
+            },
+            {
+                question: "Lengkapi persamaan berikut: `9 × (20 - 1) = (9 × 20) - ...`",
+                options: ["9 × 1", "9 + 1", "20 - 9", "9 - 1"],
+                correct: 0,
+                difficulty: "mudah",
+                explanation: "<strong>Rumus:</strong> a × (b - c) = ab - ac. Ini adalah penerapan sifat distributif pada pengurangan."
+            },
+            {
+                question: "Untuk menghitung `17 + 25 + 3`, cara termudah adalah `(17 + 3) + 25`. Langkah ini menggunakan sifat...",
+                options: ["Distributif dan Asosiatif", "Komutatif dan Asosiatif", "Hanya Komutatif", "Hanya Asosiatif"],
+                correct: 1,
+                difficulty: "mudah",
+                explanation: "<strong>Konsep:</strong> Pertama, kita menukar posisi 25 dan 3 (Komutatif), lalu mengelompokkan 17 dan 3 (Asosiatif)."
+            },
+            {
+                question: "Operasi `15 ÷ 5` tidak sama dengan `5 ÷ 15`. Ini menunjukkan pembagian tidak bersifat...",
+                options: ["Asosiatif", "Tertutup", "Komutatif", "Distributif"],
+                correct: 2,
+                difficulty: "mudah",
+                explanation: "<strong>Konsep:</strong> a ÷ b ≠ b ÷ a. Urutan dalam pembagian sangat penting."
+            },
+            {
+                question: "Nilai dari `(99 × 1)` adalah 99. Ini contoh sifat...",
+                options: ["Identitas", "Komutatif", "Asosiatif", "Besar"],
+                correct: 0,
+                difficulty: "mudah",
+                explanation: "<strong>Rumus:</strong> a × 1 = a. Mengalikan suatu bilangan dengan elemen identitas perkalian (1) tidak mengubah nilainya."
+            },
+            {
+                question: "Pengelompokan dalam `(a+b)+c` atau `a+(b+c)` adalah inti dari sifat...",
+                options: ["Asosiatif", "Komutatif", "Distributif", "Identitas"],
+                correct: 0,
+                difficulty: "mudah",
+                explanation: "<strong>Rumus:</strong> (a+b)+c = a+(b+c). Kata kunci untuk asosiatif adalah 'pengelompokan'."
+            },
+
+            // LEVEL SEDANG (21-40)
+            {
+                question: "Himpunan bilangan ganjil TIDAK tertutup terhadap operasi...",
+                options: ["Perkalian", "Penjumlahan", "Keduanya", "Tidak keduanya"],
+                correct: 1,
+                difficulty: "sedang",
+                explanation: "<strong>Konsep:</strong> Hasil operasi harus tetap di dalam himpunan. Penjumlahan dua bilangan ganjil selalu menghasilkan bilangan genap (contoh: 3 + 5 = 8), yang berarti hasilnya keluar dari himpunan bilangan ganjil."
+            },
+            {
+                question: "Persamaan `(20 ÷ 10) ÷ 2` hasilnya 1, sedangkan `20 ÷ (10 ÷ 2)` hasilnya 4. Ini membuktikan bahwa pembagian TIDAK bersifat...",
+                options: ["Komutatif", "Asosiatif", "Distributif", "Tertutup"],
+                correct: 1,
+                difficulty: "sedang",
+                explanation: "<strong>Konsep:</strong> (a ÷ b) ÷ c ≠ a ÷ (b ÷ c). Contoh ini menunjukkan bahwa cara pengelompokan dalam pembagian mengubah hasil, maka tidak asosiatif."
+            },
+            {
+                question: "Gunakan sifat distributif untuk mempermudah `15 × 98`.",
+                options: ["15 × (100 - 2)", "15 × (90 + 8)", "Keduanya benar dan menghasilkan jawaban yang sama", "Tidak bisa diselesaikan dengan sifat distributif"],
+                correct: 2,
+                difficulty: "sedang",
+                explanation: "<strong>Rumus:</strong> a(b ± c) = ab ± ac. Kedua cara benar: 15(100-2) = 1500-30 = 1470 dan 15(90+8) = 1350+120 = 1470."
+            },
+            {
+                question: "Lengkapi persamaan berikut agar menunjukkan sifat asosiatif: `(5 × 6) × 7 = ?`",
+                options: ["7 × (6 × 5)", "5 × (6 × 7)", "30 × 7", "5 × 42"],
+                correct: 1,
+                difficulty: "sedang",
+                explanation: "<strong>Rumus:</strong> (ab)c = a(bc). Sifat asosiatif hanya mengubah pengelompokan (posisi kurung), bukan urutan elemen."
+            },
+            {
+                question: "Manakah himpunan berikut yang TIDAK tertutup terhadap pengurangan?",
+                options: ["Bilangan Bulat", "Bilangan Asli", "Bilangan Rasional", "Bilangan Real"],
+                correct: 1,
+                difficulty: "sedang",
+                explanation: "<strong>Konsep:</strong> Hasil operasi harus tetap di himpunan asal. Bilangan asli (1, 2, 3...) tidak tertutup karena 3 - 5 = -2, dan -2 bukan bilangan asli."
+            },
+            {
+                question: "Persamaan `(18 × 4) + (18 × 6) = 18 × (4 + 6)` adalah contoh penerapan...",
+                options: ["Sifat Komutatif", "Sifat Asosiatif", "Sifat Distributif (pemfaktoran)", "Sifat Identitas"],
+                correct: 2,
+                difficulty: "sedang",
+                explanation: "<strong>Rumus:</strong> ab + ac = a(b+c). Ini adalah kebalikan dari sifat distributif, yang sering disebut pemfaktoran."
+            },
+            {
+                question: "Apakah ada elemen identitas untuk operasi pengurangan?",
+                options: ["Ya, yaitu 0", "Ya, yaitu 1", "Tidak ada", "Tergantung bilangannya"],
+                correct: 2,
+                difficulty: "sedang",
+                explanation: "<strong>Konsep:</strong> Elemen identitas 'e' harus memenuhi a-e=a DAN e-a=a. Untuk a-e=a, e=0. Tapi untuk e-a=a (0-a=a), ini tidak berlaku. Maka tidak ada elemen identitas."
+            },
+            {
+                question: "Pernyataan `a - b = -(b - a)` berhubungan dengan sifat...",
+                options: ["Anti-komutatif", "Asosiatif", "Distributif", "Identitas"],
+                correct: 0,
+                difficulty: "sedang",
+                explanation: "<strong>Konsep:</strong> Walaupun tidak komutatif, pengurangan memiliki sifat anti-komutatif, di mana menukar urutan akan mengubah tanda hasilnya."
+            },
+            {
+                question: "Sifat mana yang paling membantu untuk menghitung `4 × 19 × 25` dengan cepat?",
+                options: ["Distributif", "Identitas", "Komutatif dan Asosiatif", "Tertutup"],
+                correct: 2,
+                difficulty: "sedang",
+                explanation: "<strong>Konsep:</strong> Gunakan komutatif untuk menukar 19 dan 25 menjadi `4 × 25 × 19`, lalu asosiatif untuk menghitung `(4 × 25) × 19 = 100 × 19 = 1900`."
+            },
+            {
+                question: "Jika `x` adalah bilangan genap dan `y` adalah bilangan ganjil, maka `x + y` akan selalu...",
+                options: ["Genap", "Ganjil", "Prima", "Nol"],
+                correct: 1,
+                difficulty: "sedang",
+                explanation: "<strong>Konsep:</strong> genap + ganjil = (2n) + (2m+1) = 2(n+m) + 1, yang merupakan bentuk umum bilangan ganjil."
+            },
+            {
+                question: "Sifat manakah yang menjamin bahwa `(x+2)(x+3)` sama dengan `x² + 5x + 6`?",
+                options: ["Asosiatif", "Komutatif", "Distributif", "Semua jawaban benar"],
+                correct: 3,
+                difficulty: "sedang",
+                explanation: "<strong>Konsep:</strong> Proses FOIL (First, Outer, Inner, Last) menggunakan sifat distributif (`x(x+3) + 2(x+3)`), komutatif, dan asosiatif untuk menggabungkan suku sejenis."
+            },
+            {
+                question: "Operasi `a*b = a+b+1`. Apakah operasi ini memiliki elemen identitas?",
+                options: ["Ya, 0", "Ya, 1", "Ya, -1", "Tidak ada"],
+                correct: 2,
+                difficulty: "sedang",
+                explanation: "<strong>Konsep:</strong> Cari 'e' sehingga a*e=a. Maka a+e+1=a. Jika kita kurangi 'a' dari kedua sisi, kita dapat e+1=0, sehingga e = -1."
+            },
+            {
+                question: "Manakah yang merupakan penerapan sifat asosiatif?",
+                options: ["(a+b)+c = c+(a+b)", "(a+b)+c = a+(c+b)", "(a+b)+c = a+(b+c)", "(a+b)+c = (b+a)+c"],
+                correct: 2,
+                difficulty: "sedang",
+                explanation: "<strong>Rumus:</strong> (a+b)+c = a+(b+c). Pilihan lain melibatkan sifat komutatif (penukaran urutan)."
+            },
+            {
+                question: "Perkalian bilangan bulat dengan 0 hasilnya selalu 0. Ini disebut...",
+                options: ["Sifat Identitas", "Sifat Elemen Nol", "Sifat Tertutup", "Sifat Komutatif"],
+                correct: 1,
+                difficulty: "sedang",
+                explanation: "<strong>Rumus:</strong> a × 0 = 0. Ini adalah sifat khusus dari nol dalam perkalian, berbeda dari sifat identitas (a × 1 = a)."
+            },
+            {
+                question: "Himpunan `{ -1, 0, 1 }` tertutup terhadap operasi...",
+                options: ["Penjumlahan", "Pengurangan", "Perkalian", "Pembagian"],
+                correct: 2,
+                difficulty: "sedang",
+                explanation: "<strong>Konsep:</strong> Coba semua kemungkinan. Untuk perkalian, hasilnya selalu -1, 0, atau 1. Untuk penjumlahan, 1+1=2 (tidak tertutup)."
+            },
+            {
+                question: "Penyederhanaan `3x + 7x` menjadi `(3+7)x = 10x` menggunakan sifat...",
+                options: ["Asosiatif", "Komutatif", "Distributif (pemfaktoran)", "Identitas"],
+                correct: 2,
+                difficulty: "sedang",
+                explanation: "<strong>Rumus:</strong> ba + ca = (b+c)a. Ini adalah bentuk pemfaktoran dari sifat distributif."
+            },
+            {
+                question: "Manakah dari operasi berikut yang komutatif dan asosiatif?",
+                options: ["Pengurangan", "Pembagian", "Perkalian", "Pangkat"],
+                correct: 2,
+                difficulty: "sedang",
+                explanation: "<strong>Konsep:</strong> Hanya penjumlahan dan perkalian yang bersifat komutatif dan asosiatif pada bilangan real."
+            },
+            {
+                question: "Lengkapi persamaan `(a+b) × c = ...` sesuai sifat distributif.",
+                options: ["a × c + b × c", "a + b × c", "a × (b × c)", "c × (b + a)"],
+                correct: 0,
+                difficulty: "sedang",
+                explanation: "<strong>Rumus:</strong> (a+b)c = ac + bc. Sifat distributif berlaku baik dari kiri maupun dari kanan."
+            },
+            {
+                question: "Jika `a` adalah bilangan rasional dan `b` adalah bilangan irasional, maka `a+b` adalah...",
+                options: ["Selalu rasional", "Selalu irasional", "Bisa rasional atau irasional", "Selalu nol"],
+                correct: 1,
+                difficulty: "sedang",
+                explanation: "<strong>Konsep:</strong> Penjumlahan bilangan rasional dan irasional selalu menghasilkan bilangan irasional."
+            },
+            {
+                question: "Himpunan bilangan prima TIDAK tertutup terhadap penjumlahan karena...",
+                options: ["3+5=8 (bukan prima)", "2+3=5 (prima)", "1 bukan prima", "Bilangan prima tidak bisa dijumlahkan"],
+                correct: 0,
+                difficulty: "sedang",
+                explanation: "<strong>Konsep:</strong> Cukup temukan satu contoh balasan. 3 dan 5 adalah bilangan prima, tetapi hasil penjumlahannya, 8, bukan bilangan prima. Maka himpunan ini tidak tertutup."
+            },
+
+            // LEVEL SULIT (41-50)
+            {
+                question: "Jika operasi 'a # b' didefinisikan sebagai (a + b) / 2 (rata-rata), apakah operasi '#' ini bersifat asosiatif?",
+                options: ["Ya, selalu", "Tidak", "Hanya jika a=b=c", "Tergantung"],
+                correct: 1,
+                difficulty: "sulit",
+                explanation: "<strong>Konsep:</strong> Uji (a#b)#c vs a#(b#c). (a#b)#c = ((a+b)/2 + c)/2 = (a+b+2c)/4. Sedangkan a#(b#c) = (a + (b+c)/2)/2 = (2a+b+c)/4. Keduanya tidak sama."
+            },
+            {
+                question: "Manakah dari pernyataan berikut yang BENAR mengenai sifat tertutup?",
+                options: ["Bilangan irasional tertutup terhadap perkalian", "Bilangan asli tertutup terhadap pembagian", "Bilangan genap tertutup terhadap penjumlahan", "Bilangan prima tertutup terhadap penjumlahan"],
+                correct: 2,
+                difficulty: "sulit",
+                explanation: "<strong>Konsep:</strong> Bilangan genap + bilangan genap selalu menghasilkan bilangan genap (2m + 2n = 2(m+n)). Pilihan lain salah karena hasilnya bisa keluar dari himpunan aslinya (misal: √2 × √2 = 2 (rasional), 3 + 5 = 8 (bukan prima))."
+            },
+            {
+                question: "Operasi `a Δ b = a + b - ab`. Apakah operasi ini komutatif?",
+                options: ["Ya", "Tidak", "Hanya jika a=1 atau b=1", "Hanya jika a=0 atau b=0"],
+                correct: 0,
+                difficulty: "sulit",
+                explanation: "<strong>Konsep:</strong> Uji a Δ b vs b Δ a. `a Δ b = a + b - ab`. Karena penjumlahan dan perkalian komutatif, `b Δ a = b + a - ba = a + b - ab`. Keduanya sama, jadi bersifat komutatif."
+            },
+            {
+                question: "Apakah ada elemen identitas untuk operasi `a Δ b = a + b - ab`?",
+                options: ["1", "0", "-1", "Tidak ada"],
+                correct: 1,
+                difficulty: "sulit",
+                explanation: "<strong>Konsep:</strong> Cari 'e' sehingga a Δ e = a. Maka `a + e - ae = a`. Kurangi 'a' dari kedua sisi: `e - ae = 0`. Faktorkan 'e': `e(1 - a) = 0`. Agar ini berlaku untuk semua 'a', maka e harus 0."
+            },
+            {
+                question: "Pada himpunan matriks 2x2, apakah perkalian matriks bersifat komutatif?",
+                options: ["Ya, selalu", "Tidak pernah", "Kadang-kadang, tapi tidak secara umum", "Hanya untuk matriks identitas"],
+                correct: 2,
+                difficulty: "sulit",
+                explanation: "<strong>Konsep:</strong> Secara umum, perkalian matriks AB ≠ BA. Jadi, tidak komutatif. Namun, ada kasus khusus (misalnya jika salah satunya matriks identitas atau nol) di mana hasilnya bisa sama."
+            },
+            {
+                question: "Apakah operasi perpangkatan `a^b` (a pangkat b) bersifat asosiatif?",
+                options: ["Ya", "Tidak", "Hanya jika b=1", "Hanya jika a=1"],
+                correct: 1,
+                difficulty: "sulit",
+                explanation: "<strong>Konsep:</strong> Uji (a^b)^c vs a^(b^c). `(a^b)^c = a^(b*c)`. Sedangkan `a^(b^c)` adalah `a` dipangkatkan dengan hasil dari `b^c`. Keduanya sangat berbeda. Contoh: (2^3)^2 = 8^2 = 64, tapi 2^(3^2) = 2^9 = 512."
+            },
+            {
+                question: "Apakah penjumlahan mendistribusikan perkalian? Artinya, apakah `a + (b × c) = (a + b) × (a + c)`?",
+                options: ["Ya, ini adalah hukum distributif", "Tidak, secara umum tidak berlaku", "Ya, tetapi hanya untuk bilangan positif", "Hanya jika a=0"],
+                correct: 1,
+                difficulty: "sulit",
+                explanation: "<strong>Konsep:</strong> Sifat distributif hanya berlaku satu arah: perkalian terhadap penjumlahan. `(a+b)(a+c) = a² + ac + ab + bc`, yang jelas tidak sama dengan `a + bc`."
+            },
+            {
+                question: "Himpunan bilangan kompleks (a + bi) tertutup untuk operasi...",
+                options: ["Penjumlahan dan Perkalian", "Hanya Penjumlahan", "Hanya Perkalian", "Tidak keduanya"],
+                correct: 0,
+                difficulty: "sulit",
+                explanation: "<strong>Konsep:</strong> Hasil penjumlahan atau perkalian dua bilangan kompleks akan selalu menghasilkan bilangan kompleks lain. (a+bi)+(c+di) = (a+c)+(b+d)i. (a+bi)(c+di) = (ac-bd)+(ad+bc)i. Keduanya berbentuk bilangan kompleks."
+            },
+            {
+                question: "Manakah sifat yang PALING mendasar yang memungkinkan kita menulis `2(x+y)+3(x+y)` sebagai `5(x+y)`?",
+                options: ["Komutatif", "Asosiatif", "Distributif (pemfaktoran)", "Identitas"],
+                correct: 2,
+                difficulty: "sulit",
+                explanation: "<strong>Konsep:</strong> Anggap `(x+y)` sebagai satu unit, misal `A`. Maka persamaannya menjadi `2A + 3A`. Dengan sifat distributif (pemfaktoran), ini menjadi `(2+3)A = 5A`, atau `5(x+y)`."
+            },
+            {
+                question: "Jika `a*b = max(a,b)` (mengambil nilai maksimum dari a dan b). Apakah operasi ini bersifat distributif terhadap penjumlahan? yaitu `max(a, b+c) = max(a,b) + max(a,c)`?",
+                options: ["Ya, selalu benar", "Tidak, secara umum salah", "Hanya jika a lebih besar dari b dan c", "Hanya jika a, b, c positif"],
+                correct: 1,
+                difficulty: "sulit",
+                explanation: "<strong>Konsep:</strong> Gunakan contoh balasan. Misal a=5, b=2, c=3. Sisi kiri: max(5, 2+3) = max(5,5) = 5. Sisi kanan: max(5,2) + max(5,3) = 5 + 5 = 10. Karena 5 ≠ 10, maka tidak distributif."
+            }
+        ];
+
+
+        // DOM Elements
+        const questionsContainer = document.getElementById('questionsContainer');
+        const progressBar = document.getElementById('progressBar');
+        const currentQuestionEl = document.getElementById('currentQuestion');
+        const totalQuestionsEl = document.getElementById('totalQuestions');
+        const currentScoreEl = document.getElementById('currentScore');
+        const timerEl = document.getElementById('timer');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const finishBtn = document.getElementById('finishBtn');
+        const resultsContainer = document.getElementById('results');
+        const quizContainer = document.querySelector('.quiz-container');
+
+        // Quiz State
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(questions.length).fill(undefined);
+        let score = 0;
+        let timerInterval;
+        let timeElapsed = 0;
+        let quizActive = false; // Flag to track if the timer has started
+
+        function initializeQuiz() {
+            generateQuestionsHTML();
+            totalQuestionsEl.textContent = questions.length;
+            displayQuestion(currentQuestionIndex);
+            // Timer will be started by selectOption
+        }
+
+        function generateQuestionsHTML() {
+            let html = '';
+            questions.forEach((q, index) => {
+                const difficultyText = q.difficulty.charAt(0).toUpperCase() + q.difficulty.slice(1);
+                html += `
+                    <div class="question" id="question-${index}">
+                        <h3>${index + 1}. ${q.question}</h3>
+                        <span class="difficulty ${q.difficulty}">${difficultyText}</span>
+                        <ul class="options">
+                `;
+                q.options.forEach((option, i) => {
+                    html += `<li onclick="selectOption(${index}, ${i})">${option}</li>`;
+                });
+                html += `</ul></div>`;
+            });
+            questionsContainer.innerHTML = html;
+        }
+
+        function displayQuestion(index) {
+            document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
+            document.getElementById(`question-${index}`).classList.add('active');
+            currentQuestionEl.textContent = index + 1;
+            updateProgressBar();
+            updateButtons();
+        }
+
+        function selectOption(questionIndex, optionIndex) {
+            if (!quizActive) {
+                quizActive = true;
+                startTimer();
+            }
+            userAnswers[questionIndex] = optionIndex;
+            const options = document.querySelectorAll(`#question-${questionIndex} .options li`);
+            options.forEach(opt => opt.classList.remove('selected'));
+            options[optionIndex].classList.add('selected');
+            updateButtons();
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion(currentQuestionIndex);
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion(currentQuestionIndex);
+            }
+        }
+
+        function updateButtons() {
+            prevBtn.disabled = currentQuestionIndex === 0;
+            const isLastQuestion = currentQuestionIndex === questions.length - 1;
+            
+            if (isLastQuestion) {
+                nextBtn.style.display = 'none';
+                finishBtn.style.display = 'inline-block';
+                finishBtn.disabled = userAnswers[currentQuestionIndex] === undefined;
+            } else {
+                nextBtn.style.display = 'inline-block';
+                finishBtn.style.display = 'none';
+                nextBtn.disabled = userAnswers[currentQuestionIndex] === undefined;
+            }
+        }
+
+        function updateProgressBar() {
+            const progressPercentage = ((currentQuestionIndex + 1) / questions.length) * 100;
+            progressBar.style.width = `${progressPercentage}%`;
+        }
+        
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval); // Clear if already running
+            timeElapsed = 0; // Reset time
+            timerEl.textContent = `⏰ Waktu: ${formatTime(timeElapsed)}`; // Update display
+            timerInterval = setInterval(() => {
+                timeElapsed++;
+                timerEl.textContent = `⏰ Waktu: ${formatTime(timeElapsed)}`;
+            }, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+        }
+        
+        function calculateScore() {
+            score = 0;
+            userAnswers.forEach((answer, index) => {
+                if (answer === questions[index].correct) {
+                    score++;
+                }
+            });
+            currentScoreEl.textContent = score;
+        }
+
+        function finishQuiz() {
+            stopTimer();
+            calculateScore();
+            quizContainer.style.display = 'none';
+            showResults();
+        }
+
+        function showResults() {
+            const scorePercentage = (score / questions.length) * 100;
+            const totalTime = formatTime(timeElapsed);
+
+            let resultHTML = `
+                <h2>Hasil Quiz Selesai!</h2>
+                <p>Kamu telah menyelesaikan quiz dalam waktu <strong>${totalTime}</strong>.</p>
+                <div class="score-circle" id="scoreCircle">
+                    <span>${scorePercentage.toFixed(0)}%</span>
+                </div>
+                <h3>Skor Akhir: ${score}/${questions.length} Benar</h3>
+                <p>${getFeedbackMessage(scorePercentage)}</p>
+                <div class="detailed-results"><h4>Rincian Jawaban:</h4>
+            `;
+
+            questions.forEach((q, index) => {
+                const userAnswerIndex = userAnswers[index];
+                const isCorrect = userAnswerIndex === q.correct;
+                const userAnswerText = userAnswerIndex !== undefined ? q.options[userAnswerIndex] : "Tidak Dijawab";
+
+                resultHTML += `
+                    <div class="question-result ${isCorrect ? 'correct' : (userAnswerIndex === undefined ? '' : 'incorrect')}">
+                        <h5>${index + 1}. ${q.question}</h5>
+                        <p>Jawabanmu: <span class="${isCorrect ? 'correct-answer' : 'user-answer'}">${userAnswerText}</span></p>
+                        ${!isCorrect && userAnswerIndex !== undefined ? `<p>Jawaban Benar: <span class="correct-answer">${q.options[q.correct]}</span></p>` : ''}
+                        ${userAnswerIndex === undefined ? `<p>Jawaban Benar: <span class="correct-answer">${q.options[q.correct]}</span></p>` : ''}
+                        <div class="explanation"><h4>Penjelasan:</h4><p>${q.explanation}</p></div>
+                    </div>
+                `;
+            });
+            
+            resultHTML += `</div><button class="restart-btn" onclick="location.reload()">Ulangi Quiz</button>`;
+            
+            resultsContainer.innerHTML = resultHTML;
+            resultsContainer.classList.add('show');
+            
+            const scoreCircle = document.getElementById('scoreCircle');
+            setTimeout(() => {
+                scoreCircle.style.background = `conic-gradient(#2ecc71 0deg, #2ecc71 ${scorePercentage * 3.6}deg, #ecf0f1 ${scorePercentage * 3.6}deg)`;
+                scoreCircle.style.transition = 'background 1.5s ease-out';
+            }, 100);
+        }
+
+        function getFeedbackMessage(percentage) {
+            if (percentage >= 90) return "Luar biasa! Kamu adalah seorang master aritmetika!";
+            if (percentage >= 75) return "Sangat bagus! Pemahamanmu sudah sangat baik.";
+            if (percentage >= 50) return "Cukup bagus! Terus berlatih untuk menjadi lebih baik.";
+            if (percentage >= 25) return "Jangan menyerah! Coba pelajari lagi materi dasarnya.";
+            return "Terus belajar, ya! Setiap kesalahan adalah kesempatan untuk belajar.";
+        }
+
+        document.addEventListener('DOMContentLoaded', initializeQuiz);
+    </script>
+</body>
+</html>
